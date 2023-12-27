@@ -1,10 +1,13 @@
 import { Layout } from "antd";
 
-const footerStyle = {
-  height: 60,
-  backgroundColor: "red",
-};
-export const Footer = () => {
+export const Footer = ({ bgColor, borderLG }) => {
   const { Footer } = Layout;
+  const footerStyle = {
+    height: 48,
+    backgroundColor: bgColor,
+    display: "flex",
+    alignItems: "center",
+    borderRadius: borderLG,
+  };
   return <Footer style={footerStyle}>Footer</Footer>;
 };

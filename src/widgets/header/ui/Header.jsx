@@ -1,11 +1,13 @@
 import { Layout } from "antd";
 
-const headerStyle = {
-  height: 60,
-  backgroundColor: "red",
-};
-
-export const Header = () => {
+export const Header = ({ bgColor, borderLG }) => {
   const { Header } = Layout;
+  const headerStyle = {
+    height: 48,
+    backgroundColor: bgColor,
+    display: "flex",
+    alignItems: "center",
+    borderRadius: borderLG,
+  };
   return <Header style={headerStyle}>Header</Header>;
 };
