@@ -19,7 +19,7 @@ export const Footer = ({ bgColor, borderLG }) => {
       >
         <GithubFilled style={{ fontSize: "25px", cursor: "pointer" }} />
         <Typography.Text style={{ fontSize: "18px" }}>
-          my github
+          View on Github
         </Typography.Text>
       </Typography.Link>
     </Footer>
