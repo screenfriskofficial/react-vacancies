@@ -1,7 +1,12 @@
-const MainPage = () => {
-    return (
-        <div>Main Page</div>
-    )
-}
+import { Search } from "~widgets/search/index.js";
+import { Flex } from "antd";
 
-export default MainPage
+const MainPage = () => {
+  return (
+    <Flex justify={"center"}>
+      <Search />
+    </Flex>
+  );
+};
+
+export default MainPage;

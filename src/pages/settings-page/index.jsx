@@ -1,5 +1,5 @@
 const SettingsPage = () => {
-  return <div>Settings page</div>;
+  return <div>Lang switcher + Theme switcher</div>;
 };
 
 export default SettingsPage;

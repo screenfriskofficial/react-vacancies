@@ -1,4 +1,5 @@
-import { Layout } from "antd";
+import { Layout, Typography } from "antd";
+import { GithubFilled } from "@ant-design/icons";
 
 export const Footer = ({ bgColor, borderLG }) => {
   const { Footer } = Layout;
@@ -9,5 +10,18 @@ export const Footer = ({ bgColor, borderLG }) => {
     alignItems: "center",
     borderRadius: borderLG,
   };
-  return <Footer style={footerStyle}>Footer</Footer>;
+  return (
+    <Footer style={footerStyle}>
+      <Typography.Link
+        href={"https://github.com/screenfriskofficial"}
+        target={"_blank"}
+        style={{ display: "flex", alignItems: "center", gap: 10 }}
+      >
+        <GithubFilled style={{ fontSize: "25px", cursor: "pointer" }} />
+        <Typography.Text style={{ fontSize: "18px" }}>
+          my github
+        </Typography.Text>
+      </Typography.Link>
+    </Footer>
+  );
 };

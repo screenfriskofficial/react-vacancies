@@ -15,7 +15,7 @@ export const Sidebar = memo(() => {
 
   return (
     <Sider
-      theme="dark"
+      theme="light"
       collapsible
       collapsedWidth={70}
       collapsed={collapsed}
@@ -24,7 +24,7 @@ export const Sidebar = memo(() => {
     >
       <Menu
         onClick={handleClick}
-        theme="dark"
+        theme="light"
         mode="inline"
         defaultSelectedKeys={[location.pathname]}
         items={navigationSettings}
