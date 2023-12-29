@@ -11,6 +11,7 @@ export const MainLayout = () => {
   } = theme.useToken();
   const contentStyle = {
     minHeight: "calc(100vh - 168px)",
+    height: "calc(100vh - 168px)",
     padding: "20px",
     backgroundColor: colorBgContainer,
     borderRadius: borderRadiusLG,

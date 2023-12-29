@@ -1,0 +1,9 @@
+.username {
+    font-size: 15px;
+}
+@media screen and (max-width: 400px) {
+    .username {
+        display: none;
+
+    }
+}

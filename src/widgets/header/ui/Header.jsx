@@ -3,6 +3,7 @@ import { LoginOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { memo, useState } from "react";
 import { LoginForm } from "~features/login-form/index.js";
 import { RegisterForm } from "~features/register-form/index.js";
+import cls from "./Header.module.css";
 
 const tabItems = [
   {
@@ -26,6 +27,7 @@ export const Header = memo(({ bgColor, borderLG }) => {
     alignItems: "center",
     borderRadius: borderLG,
     justifyContent: "space-between",
+    gap: 10,
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -82,7 +84,7 @@ export const Header = memo(({ bgColor, borderLG }) => {
               icon={<UserOutlined />}
             />
           </Tooltip>
-          <span>Username</span>
+          <span className={cls.username}>Username</span>
         </Flex>
         <Flex align={"center"}>
           <Button type={"primary"} danger icon={<LogoutOutlined />}>

@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const Sidebar = memo(() => {
   const { Sider } = Layout;
   const [collapsed, setCollapsed] = useState(false);
+  const [broken, setBroken] = useState(false);
+  const collapsible = true;
   const navigation = useNavigate();
   const location = useLocation();
 
@@ -15,11 +17,13 @@ export const Sidebar = memo(() => {
 
   return (
     <Sider
+      breakpoint={"md"}
+      onBreakpoint={(broken) => setBroken(broken)}
       theme="light"
-      collapsible
+      collapsible={!broken && collapsible}
       collapsedWidth={70}
       collapsed={collapsed}
-      width="20%"
+      width="300px"
       onCollapse={(value) => setCollapsed(value)}
     >
       <Menu

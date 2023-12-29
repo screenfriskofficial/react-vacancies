@@ -46,20 +46,22 @@ const data = [
 ];
 
 const MainPage = () => {
-  const pageSize = 15;
+  const pageSize = 25;
 
   return (
-    <Flex vertical gap={20}>
+    <Flex vertical gap={20} style={{ height: "100%" }}>
       <List
-        header={<Search />}
+        style={{
+          height: "100%",
+          overflow: "auto",
+        }}
         pagination={{
-          position: "top",
+          position: "both",
           align: "center",
-          onChange: (page) => {
-            console.log(page);
-          },
+          onChange: (page) => page,
           pageSize,
         }}
+        header={<Search />}
         bordered
         size={"large"}
         dataSource={data}
