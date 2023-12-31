@@ -1,10 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import {AppRouter} from "./providers/router-provider/index.jsx";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import "./firebase.js";
+import { StoreProvider } from "~app/providers/store-provider/StoreProvider.jsx";
+import { AppProvider } from "~app/providers/router-provider/RouterProvider.jsx";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AppRouter />
-  </React.StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <StoreProvider>
+      <AppProvider />
+    </StoreProvider>
+  </BrowserRouter>,
+);

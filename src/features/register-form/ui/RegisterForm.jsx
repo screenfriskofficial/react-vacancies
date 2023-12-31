@@ -2,7 +2,7 @@ import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
 
-export const RegisterForm = memo(() => {
+export const RegisterForm = memo(({ register, loading }) => {
   const [form] = Form.useForm();
   const [clientReady, setClientReady] = useState(false);
 
@@ -10,13 +10,14 @@ export const RegisterForm = memo(() => {
     setClientReady(true);
   }, []);
   const onFinish = (values) => {
-    console.log(values);
+    const { email, password } = values;
+    register(email, password);
   };
 
   return (
     <Form name={"register"} form={form} onFinish={onFinish}>
       <Form.Item
-        name="Почта"
+        name="email"
         rules={[
           {
             type: "email",
@@ -31,7 +32,7 @@ export const RegisterForm = memo(() => {
         <Input prefix={<MailOutlined />} placeholder={"Почта"} />
       </Form.Item>
       <Form.Item
-        name="Пароль"
+        name="password"
         rules={[
           {
             required: true,
@@ -48,6 +49,7 @@ export const RegisterForm = memo(() => {
       <Form.Item shouldUpdate>
         {() => (
           <Button
+            loading={loading}
             htmlType={"submit"}
             type={"primary"}
             disabled={

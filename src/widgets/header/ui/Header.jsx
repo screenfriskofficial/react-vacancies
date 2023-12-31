@@ -1,25 +1,21 @@
-import { Avatar, Button, Flex, Layout, Modal, Tabs, Tooltip } from "antd";
+import { Avatar, Button, Flex, Layout, Modal, Spin, Tabs, Tooltip } from "antd";
 import { LoginOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { memo, useState } from "react";
 import { LoginForm } from "~features/login-form/index.js";
 import { RegisterForm } from "~features/register-form/index.js";
 import cls from "./Header.module.css";
-
-const tabItems = [
-  {
-    key: "login",
-    label: "Войти",
-    children: <LoginForm />,
-  },
-  {
-    key: "register",
-    label: "Регистрация",
-    children: <RegisterForm />,
-  },
-];
+import { useAuth } from "~shared/hooks/useAuth.js";
+import { useProfile } from "~shared/hooks/useProfile.js";
 
 export const Header = memo(({ bgColor, borderLG }) => {
   const { Header } = Layout;
+  const {
+    loginWithEmailAndPassword,
+    registerWithEmailAndPassword,
+    logout,
+    isLoading,
+  } = useAuth();
+  const { currentUser, isLoadingProfile } = useProfile();
   const headerStyle = {
     height: 48,
     backgroundColor: bgColor,
@@ -30,45 +26,82 @@ export const Header = memo(({ bgColor, borderLG }) => {
     gap: 10,
   };
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
-  const showModal = () => {
-    setIsOpen(true);
+  const tabItems = [
+    {
+      key: "login",
+      label: "Войти",
+      children: (
+        <LoginForm login={loginWithEmailAndPassword} loading={isLoading} />
+      ),
+    },
+    {
+      key: "register",
+      label: "Регистрация",
+      children: (
+        <RegisterForm
+          register={registerWithEmailAndPassword}
+          loading={isLoading}
+        />
+      ),
+    },
+  ];
+
+  const showProfileModal = () => {
+    setIsProfileOpen(true);
   };
 
-  const handleClose = () => {
-    setIsOpen(false);
+  const handleProfileClose = () => {
+    setIsProfileOpen(false);
   };
 
-  const showLoginModal = () => {
-    setIsLoginOpen(true);
+  const showAuthModal = () => {
+    setIsAuthOpen(true);
   };
 
-  const handleLoginClose = () => {
-    setIsLoginOpen(false);
+  const handleAuthClose = () => {
+    setIsAuthOpen(false);
   };
 
-  const isAuth = false;
-
-  if (isAuth) {
+  if (currentUser) {
     return (
       <>
         <Header style={headerStyle}>
-          <Flex align={"center"} justify={"end"} style={{ width: "100%" }}>
+          {isLoadingProfile ? (
+            <Spin />
+          ) : (
+            <Flex align={"center"} gap={10}>
+              <Tooltip title={"Профиль"}>
+                <Avatar
+                  onClick={showProfileModal}
+                  style={{ cursor: "pointer" }}
+                  icon={<UserOutlined />}
+                />
+              </Tooltip>
+
+              <span className={cls.username}>{currentUser.email}</span>
+            </Flex>
+          )}
+
+          <Flex align={"center"}>
             <Button
-              onClick={showLoginModal}
+              onClick={logout}
               type={"primary"}
-              icon={<LoginOutlined />}
+              danger
+              icon={<LogoutOutlined />}
             >
-              Войти
+              Выйти
             </Button>
           </Flex>
         </Header>
-        <Modal open={isLoginOpen} onCancel={handleLoginClose} footer={false}>
-          <Tabs defaultActiveKey={"login"} centered items={tabItems} />
-        </Modal>
+        <Modal
+          open={isProfileOpen}
+          onCancel={handleProfileClose}
+          footer={false}
+        />
       </>
     );
   }
@@ -76,23 +109,19 @@ export const Header = memo(({ bgColor, borderLG }) => {
   return (
     <>
       <Header style={headerStyle}>
-        <Flex align={"center"} gap={10}>
-          <Tooltip title={"Профиль"}>
-            <Avatar
-              onClick={showModal}
-              style={{ cursor: "pointer" }}
-              icon={<UserOutlined />}
-            />
-          </Tooltip>
-          <span className={cls.username}>Username</span>
-        </Flex>
-        <Flex align={"center"}>
-          <Button type={"primary"} danger icon={<LogoutOutlined />}>
-            Выйти
+        <Flex align={"center"} justify={"end"} style={{ width: "100%" }}>
+          <Button
+            onClick={showAuthModal}
+            type={"primary"}
+            icon={<LoginOutlined />}
+          >
+            Войти
           </Button>
         </Flex>
       </Header>
-      <Modal open={isOpen} onCancel={handleClose} footer={false} />
+      <Modal open={isAuthOpen} onCancel={handleAuthClose} footer={false}>
+        <Tabs defaultActiveKey={"login"} centered items={tabItems} />
+      </Modal>
     </>
   );
 });
