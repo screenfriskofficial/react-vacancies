@@ -1,8 +1,9 @@
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-export const RegisterForm = memo(({ register, loading }) => {
+const RegisterForm = memo(({ register, loading }) => {
   const [form] = Form.useForm();
   const [clientReady, setClientReady] = useState(false);
 
@@ -66,3 +67,12 @@ export const RegisterForm = memo(({ register, loading }) => {
     </Form>
   );
 });
+
+RegisterForm.displayName = "RegisterForm";
+
+RegisterForm.propTypes = {
+  register: PropTypes.func,
+  loading: PropTypes.bool,
+};
+
+export { RegisterForm };

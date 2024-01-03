@@ -1,7 +1,9 @@
 import { Layout, Typography } from "antd";
 import { GithubFilled } from "@ant-design/icons";
+import PropTypes from "prop-types";
+import { memo } from "react";
 
-export const Footer = ({ bgColor, borderLG }) => {
+const Footer = memo(({ bgColor, borderLG }) => {
   const { Footer } = Layout;
   const footerStyle = {
     height: 48,
@@ -24,4 +26,13 @@ export const Footer = ({ bgColor, borderLG }) => {
       </Typography.Link>
     </Footer>
   );
+});
+
+Footer.displayName = "Footer";
+
+Footer.propTypes = {
+  bgColor: PropTypes.string,
+  borderLG: PropTypes.number,
 };
+
+export { Footer };

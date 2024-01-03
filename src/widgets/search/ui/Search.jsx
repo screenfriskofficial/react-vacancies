@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import { memo } from "react";
 
-export const Search = memo(() => {
+const Search = memo(() => {
   return (
     <Input.Search
       enterButton
@@ -14,3 +14,7 @@ export const Search = memo(() => {
     />
   );
 });
+
+Search.displayName = "Search";
+
+export { Search };

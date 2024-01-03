@@ -6,9 +6,11 @@ import { lazy } from "react";
 import { ProtectedRoute } from "~shared/lib/procted-route/ProtectedRoute.jsx";
 import { useProfile } from "~shared/hooks/useProfile.js";
 
-const MainPage = Loadable(lazy(() => import("~pages/main-page/index.jsx")));
+const MainPage = Loadable(
+  lazy(() => import("~pages/main-page/ui/MainPage.jsx")),
+);
 const SettingsPage = Loadable(
-  lazy(() => import("~pages/settings-page/index.jsx")),
+  lazy(() => import("~pages/settings-page/ui/SettingsPage.jsx")),
 );
 
 export const AppProvider = () => {

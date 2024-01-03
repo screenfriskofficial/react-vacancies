@@ -1,9 +1,9 @@
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { Layout, Menu } from "antd";
 import navigationSettings from "~widgets/sidebar/view/main-view/index.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export const Sidebar = memo(() => {
+const Sidebar = memo(() => {
   const { Sider } = Layout;
   const [collapsed, setCollapsed] = useState(false);
   const [broken, setBroken] = useState(false);
@@ -11,9 +11,12 @@ export const Sidebar = memo(() => {
   const navigation = useNavigate();
   const location = useLocation();
 
-  const handleClick = (e) => {
-    navigation(e.key);
-  };
+  const handleClick = useCallback(
+    (e) => {
+      navigation(e.key);
+    },
+    [navigation],
+  );
 
   return (
     <Sider
@@ -36,3 +39,7 @@ export const Sidebar = memo(() => {
     </Sider>
   );
 });
+
+Sidebar.displayName = "Sidebar";
+
+export { Sidebar };

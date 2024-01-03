@@ -1,8 +1,9 @@
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-export const LoginForm = memo(({ login, loading }) => {
+const LoginForm = memo(({ login, loading }) => {
   const [form] = Form.useForm();
   const [clientReady, setClientReady] = useState(false);
 
@@ -66,3 +67,12 @@ export const LoginForm = memo(({ login, loading }) => {
     </Form>
   );
 });
+
+LoginForm.displayName = "LoginForm";
+
+LoginForm.propTypes = {
+  login: PropTypes.func,
+  loading: PropTypes.bool,
+};
+
+export { LoginForm };

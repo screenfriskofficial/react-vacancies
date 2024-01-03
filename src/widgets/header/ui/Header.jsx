@@ -1,13 +1,14 @@
 import { Avatar, Button, Flex, Layout, Modal, Spin, Tabs, Tooltip } from "antd";
 import { LoginOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { LoginForm } from "~features/login-form/index.js";
 import { RegisterForm } from "~features/register-form/index.js";
 import cls from "./Header.module.css";
 import { useAuth } from "~shared/hooks/useAuth.js";
 import { useProfile } from "~shared/hooks/useProfile.js";
+import PropTypes from "prop-types";
 
-export const Header = memo(({ bgColor, borderLG }) => {
+const Header = memo(({ bgColor, borderLG }) => {
   const { Header } = Layout;
   const {
     loginWithEmailAndPassword,
@@ -50,21 +51,21 @@ export const Header = memo(({ bgColor, borderLG }) => {
     },
   ];
 
-  const showProfileModal = () => {
+  const showProfileModal = useCallback(() => {
     setIsProfileOpen(true);
-  };
+  }, []);
 
-  const handleProfileClose = () => {
+  const handleProfileClose = useCallback(() => {
     setIsProfileOpen(false);
-  };
+  }, []);
 
-  const showAuthModal = () => {
+  const showAuthModal = useCallback(() => {
     setIsAuthOpen(true);
-  };
+  }, []);
 
-  const handleAuthClose = () => {
+  const handleAuthClose = useCallback(() => {
     setIsAuthOpen(false);
-  };
+  }, []);
 
   if (currentUser) {
     return (
@@ -125,3 +126,12 @@ export const Header = memo(({ bgColor, borderLG }) => {
     </>
   );
 });
+
+Header.displayName = "Header";
+
+Header.propTypes = {
+  bgColor: PropTypes.string,
+  borderLG: PropTypes.number,
+};
+
+export { Header };
