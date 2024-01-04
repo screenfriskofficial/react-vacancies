@@ -22,7 +22,7 @@ const MainPage = () => {
   const [startTour, setStartTour] = useState(false);
 
   const { data, isLoading, error } =
-    fetchVacancies.endpoints.getVacancies.useQuery(searchQuery);
+    fetchVacancies.endpoints.getVacancies.useQuery(searchQuery, currentPage);
 
   return (
     <Flex vertical gap={20} style={{ height: "100%" }}>
