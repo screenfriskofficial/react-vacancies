@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Flex, Spin, Tour } from "antd";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchVacancies } from "~entities/vacancy/models/services/fetch-vacancies/fetchVacancies.js";
 import { mainTourSteps } from "../model/lib/main-tour-steps/mainTourSteps.js";
 import { mainPagination } from "../model/lib/main-pagination/mainPagination.js";
@@ -9,11 +8,6 @@ import { useSearch } from "../model/hooks/useSearch/useSearch.jsx";
 import { MainPageList } from "~pages/main-page/ui/main-page-list/MainPageList.jsx";
 
 const MainPage = () => {
-  const dispatch = useDispatch();
-  const { vacancies, isLoading, error } = useSelector(
-    (state) => state.vacancies,
-  );
-
   const { vacancyRef, searchRef, optionsRef } = useTourRefs();
   const { searchQuery, pageSize, currentPage, setPageLocation } = useSearch();
 
@@ -27,20 +21,19 @@ const MainPage = () => {
 
   const [startTour, setStartTour] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchVacancies(searchQuery));
-  }, [dispatch, searchQuery, currentPage]);
+  const { data, isLoading, error } =
+    fetchVacancies.endpoints.getVacancies.useQuery(searchQuery);
 
   return (
     <Flex vertical gap={20} style={{ height: "100%" }}>
-      {error && error}
+      {error && error.message}
       {isLoading ? (
         <Spin />
       ) : (
         <MainPageList
           setPageLocation={setPageLocation}
           vacancyRef={vacancyRef}
-          vacancies={vacancies}
+          vacancies={data && data.results.vacancies}
           searchRef={searchRef}
           searchQuery={searchQuery}
           optionsRef={optionsRef}

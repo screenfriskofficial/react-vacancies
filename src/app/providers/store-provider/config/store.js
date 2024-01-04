@@ -1,8 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { vacancyReducer } from "~entities/vacancy/models/slice/vacancySlice.js";
+import { fetchVacancies } from "~entities/vacancy/models/services/fetch-vacancies/fetchVacancies.js";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
-    vacancies: vacancyReducer,
+    [fetchVacancies.reducerPath]: fetchVacancies.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(fetchVacancies.middleware),
 });
+
+setupListeners(store.dispatch);

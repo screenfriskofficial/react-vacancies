@@ -1,21 +1,16 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { $api } from "~shared/api/api.js";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const fetchVacancies = createAsyncThunk(
-  "vacancies/fetchAllVacancies",
-  async (data, thunkAPI) => {
-    try {
-      const response = await $api.get(
-        "https://opendata.trudvsem.ru/api/v1/vacancies/region/65",
-        {
-          params: {
-            text: data,
-          },
-        },
-      );
-      return thunkAPI.fulfillWithValue(response.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  },
-);
+const baseUrl = import.meta.env.VITE_BASE_URL;
+export const fetchVacancies = createApi({
+  reducerPath: "fetchVacancies",
+  baseQuery: fetchBaseQuery({
+    baseUrl,
+  }),
+  endpoints: (builder) => ({
+    getVacancies: builder.query({
+      query: (text = "") => `?text=${text}`,
+    }),
+  }),
+});
+
+export const { useGetVacancies } = fetchVacancies;
