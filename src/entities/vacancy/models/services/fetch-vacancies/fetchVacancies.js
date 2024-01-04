@@ -8,8 +8,7 @@ export const fetchVacancies = createApi({
   }),
   endpoints: (builder) => ({
     getVacancies: builder.query({
-      query: (text = "", currentPage = "1") =>
-        `?offset=${currentPage}&limit=100&text=${text}`,
+      query: (text = "") => `?text=${text}`,
     }),
   }),
 });
