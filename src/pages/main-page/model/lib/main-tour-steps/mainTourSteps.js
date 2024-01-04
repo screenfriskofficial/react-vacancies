@@ -3,7 +3,7 @@ const mainTourSteps = (searchRef, vacancyRef, optionsRef) => {
     {
       title: "Поиск",
       description:
-        "Если вы не можете найти вакансию, то можете воспользоваться поиском.",
+        "Если вы хотите найти интересующую вас вакансию, то воспользуйтесь поиском.",
       target: () => searchRef.current,
       nextButtonProps: {
         children: "Далее",
@@ -23,7 +23,7 @@ const mainTourSteps = (searchRef, vacancyRef, optionsRef) => {
     {
       title: "Настройка поиска",
       description:
-        "Тут вы можете настроить ваши поисковые запросы, как вам удобно.",
+        "Тут вы можете настроить ваши поисковые параметры, как вам удобно.",
       target: () => optionsRef.current,
       nextButtonProps: {
         children: "Завершить",
