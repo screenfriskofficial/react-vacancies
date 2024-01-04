@@ -31,6 +31,8 @@ const Header = memo(({ bgColor, borderLG }) => {
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
+  console.log(currentUser);
+
   const tabItems = [
     {
       key: "login",
@@ -83,7 +85,7 @@ const Header = memo(({ bgColor, borderLG }) => {
                 />
               </Tooltip>
 
-              <span className={cls.username}>{currentUser.email}</span>
+              <span className={cls.username}>{currentUser.displayName}</span>
             </Flex>
           )}
 
@@ -99,10 +101,13 @@ const Header = memo(({ bgColor, borderLG }) => {
           </Flex>
         </Header>
         <Modal
+          title={currentUser.displayName}
           open={isProfileOpen}
           onCancel={handleProfileClose}
           footer={false}
-        />
+        >
+          <p>{currentUser.email}</p>
+        </Modal>
       </>
     );
   }

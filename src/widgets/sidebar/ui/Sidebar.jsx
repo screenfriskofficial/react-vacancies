@@ -22,7 +22,7 @@ const Sidebar = memo(() => {
     <Sider
       breakpoint={"md"}
       onBreakpoint={(broken) => setBroken(broken)}
-      theme="light"
+      theme="dark"
       collapsible={!broken && collapsible}
       collapsedWidth={70}
       collapsed={collapsed}
@@ -31,7 +31,7 @@ const Sidebar = memo(() => {
     >
       <Menu
         onClick={handleClick}
-        theme="light"
+        theme="dark"
         mode="inline"
         defaultSelectedKeys={[location.pathname]}
         items={navigationSettings}

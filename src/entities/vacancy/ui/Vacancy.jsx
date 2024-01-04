@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { memo, useCallback, useState } from "react";
 
 const Vacancy = memo(
-  ({ id, salary_min, salary_max, currency, job_name, salary }) => {
+  ({ id, salary_min, salary_max, currency, job_name, salary, vacancyRef }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = useCallback(() => {
       setIsModalOpen(true);
@@ -22,6 +22,7 @@ const Vacancy = memo(
     return (
       <>
         <List.Item
+          ref={vacancyRef}
           style={{ cursor: "pointer" }}
           onClick={showModal}
           key={id}
@@ -33,6 +34,7 @@ const Vacancy = memo(
           />
         </List.Item>
         <Modal
+          zIndex={10000}
           title={job_name}
           open={isModalOpen}
           onOk={handleOk}
@@ -55,6 +57,10 @@ Vacancy.propTypes = {
   currency: PropTypes.string,
   job_name: PropTypes.string,
   salary: PropTypes.string,
+  vacancyRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any }),
+  ]),
 };
 
 export { Vacancy };

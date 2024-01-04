@@ -8,8 +8,12 @@ export const useProfile = () => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setIsLoadingProfile(false);
+      if (user) {
+        setCurrentUser(user);
+        setIsLoadingProfile(false);
+      } else {
+        setCurrentUser(null);
+      }
     });
 
     return () => unsub();

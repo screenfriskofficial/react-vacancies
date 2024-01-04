@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
@@ -11,12 +11,24 @@ const RegisterForm = memo(({ register, loading }) => {
     setClientReady(true);
   }, []);
   const onFinish = (values) => {
-    const { email, password } = values;
-    register(email, password);
+    const { email, password, username } = values;
+    register(email, password, username);
   };
 
   return (
     <Form name={"register"} form={form} onFinish={onFinish}>
+      <Form.Item
+        name="username"
+        rules={[
+          {
+            type: "username",
+            required: true,
+            message: "Введите ваше ФИО!",
+          },
+        ]}
+      >
+        <Input prefix={<UserOutlined />} placeholder={"ФИО"} />
+      </Form.Item>
       <Form.Item
         name="email"
         rules={[
