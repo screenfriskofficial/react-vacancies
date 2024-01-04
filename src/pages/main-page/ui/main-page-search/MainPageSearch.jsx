@@ -2,7 +2,7 @@ import { Input } from "antd";
 import PropTypes from "prop-types";
 import { memo } from "react";
 
-const Search = memo(({ setPageLocation, searchQuery }) => {
+const MainPageSearch = memo(({ setPageLocation, searchQuery }) => {
   return (
     <Input.Search
       defaultValue={searchQuery}
@@ -22,11 +22,11 @@ const Search = memo(({ setPageLocation, searchQuery }) => {
   );
 });
 
-Search.displayName = "Search";
+MainPageSearch.displayName = "MainPageSearch";
 
-Search.propTypes = {
+MainPageSearch.propTypes = {
   setPageLocation: PropTypes.func,
   searchQuery: PropTypes.string,
 };
 
-export { Search };
+export { MainPageSearch };
