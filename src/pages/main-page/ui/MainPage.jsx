@@ -102,7 +102,10 @@ const MainPage = () => {
           header={
             <Flex align={"center"} gap={15} className={cls.headerBox}>
               <div ref={searchRef} style={{ width: "100%" }}>
-                <Search setPageLocation={setPageLocation} />
+                <Search
+                  searchQuery={searchQuery}
+                  setPageLocation={setPageLocation}
+                />
               </div>
               <Button size={"large"} type={"primary"} ref={optionsRef}>
                 Настройка поиска
