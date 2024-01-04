@@ -8,10 +8,13 @@ const MainPageSearch = memo(({ setPageLocation, searchQuery }) => {
       defaultValue={searchQuery}
       enterButton
       size={"large"}
+      allowClear
       placeholder={"Поиск вакансии"}
       onSearch={(value) =>
         setPageLocation(
           (prev) => {
+            prev.set("pageSize", ["10"]);
+            prev.set("page", 1);
             prev.set("searchQuery", value.toLowerCase());
             return prev;
           },

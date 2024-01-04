@@ -8,7 +8,10 @@ export const fetchVacancies = createApi({
   }),
   endpoints: (builder) => ({
     getVacancies: builder.query({
-      query: (text = "") => `?text=${text}`,
+      query: (arg) => {
+        const { searchQuery, currentPage, pageSize } = arg;
+        return `/region/65?text=${searchQuery}&offset=${currentPage}&limit=${pageSize}`;
+      },
     }),
   }),
 });

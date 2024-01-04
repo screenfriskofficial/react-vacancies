@@ -1,4 +1,4 @@
-const mainPagination = (setPageLocation, currentPage, pageSize) => {
+const mainPagination = (setPageLocation, pageSize, currentPage) => {
   return {
     responsive: true,
     position: "both",
@@ -15,7 +15,7 @@ const mainPagination = (setPageLocation, currentPage, pageSize) => {
           replace: true,
         },
       ),
-    defaultCurrent: currentPage,
+    defaultValue: currentPage,
     defaultPageSize: pageSize,
   };
 };

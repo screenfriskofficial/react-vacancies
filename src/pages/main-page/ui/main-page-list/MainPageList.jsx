@@ -5,10 +5,13 @@ import { QuestionCircleOutlined, SettingOutlined } from "@ant-design/icons";
 import { Vacancy } from "~entities/vacancy/index.js";
 import { memo } from "react";
 import PropTypes from "prop-types";
+import { mainPagination } from "~pages/main-page/model/lib/main-pagination/mainPagination.js";
 
 const MainPageList = memo(
   ({
-    pagination,
+    currentPage,
+    pageSize,
+    total,
     searchRef,
     vacancyRef,
     optionsRef,
@@ -17,13 +20,19 @@ const MainPageList = memo(
     setStartTour,
     vacancies,
   }) => {
+    const pagination = mainPagination(
+      setPageLocation,
+      pageSize,
+      searchQuery,
+      currentPage,
+    );
     return (
       <List
         style={{
           height: "100%",
           overflow: "auto",
         }}
-        pagination={pagination}
+        pagination={{ ...pagination, total, current: currentPage }}
         header={
           <Flex align={"center"} gap={15} className={cls.headerBox}>
             <div ref={searchRef} style={{ width: "100%" }}>
@@ -73,6 +82,9 @@ const MainPageList = memo(
 MainPageList.displayName = "MainPageList";
 
 MainPageList.propTypes = {
+  currentPage: PropTypes.string,
+  pageSize: PropTypes.string,
+  total: PropTypes.number,
   pagination: PropTypes.object,
   searchRef: PropTypes.oneOfType([
     PropTypes.func,
