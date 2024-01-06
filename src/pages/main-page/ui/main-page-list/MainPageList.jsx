@@ -66,6 +66,10 @@ const MainPageList = memo(
         renderItem={(item) => (
           <Vacancy
             id={item.vacancy.id}
+            url={item.vacancy.vac_url}
+            creation_date={item.vacancy["creation-date"]}
+            addresses={item.vacancy.addresses}
+            duty={item.vacancy.duty}
             vacancyRef={vacancyRef}
             salary_max={item.vacancy.salary_max}
             currency={item.vacancy.currency}

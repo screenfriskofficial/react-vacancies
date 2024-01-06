@@ -33,6 +33,7 @@ const Sidebar = memo(() => {
         onClick={handleClick}
         theme="dark"
         mode="inline"
+        selectedKeys={[location.pathname]}
         defaultSelectedKeys={[location.pathname]}
         items={navigationSettings}
       />
