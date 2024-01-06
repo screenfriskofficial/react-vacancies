@@ -3,7 +3,7 @@ import { HeartOutlined } from "@ant-design/icons";
 import { formatSalary } from "~shared/lib/format-salary/formatSalary.js";
 import PropTypes from "prop-types";
 import { memo, useCallback, useState } from "react";
-import { VacancyDetail } from "~entities/vacancy/ui/vacancy-detail/VacancyDetail.jsx";
+import { VacancyDetail } from "./vacancy-detail/VacancyDetail.jsx";
 
 const Vacancy = memo(
   ({

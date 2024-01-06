@@ -13,7 +13,7 @@ const SettingsPage = Loadable(
   lazy(() => import("~pages/settings-page/ui/SettingsPage.jsx")),
 );
 
-export const AppProvider = () => {
+const AppProvider = () => {
   const { currentUser } = useProfile();
   return useRoutes([
     {
@@ -35,3 +35,5 @@ export const AppProvider = () => {
     },
   ]);
 };
+
+export { AppProvider };

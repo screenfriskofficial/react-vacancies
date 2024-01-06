@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from "react";
 import { Layout, Menu } from "antd";
-import navigationSettings from "~widgets/sidebar/view/main-view/index.jsx";
+import navigationSettings from "../view/sidebar-view/SidebarView.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = memo(() => {

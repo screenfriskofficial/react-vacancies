@@ -1,5 +1,5 @@
 import { Typography } from "antd";
 
-export const NotAuthenticatedMsg = () => {
+export const NotAuthenticated = () => {
   return <Typography.Text>Вы не авторизованы!</Typography.Text>;
 };

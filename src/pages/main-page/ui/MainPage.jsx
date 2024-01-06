@@ -4,7 +4,7 @@ import { fetchVacancies } from "~entities/vacancy/models/services/fetch-vacancie
 import { mainTourSteps } from "../model/lib/main-tour-steps/mainTourSteps.js";
 import { useTourRefs } from "../model/hooks/useTourRefs/useTourRefs.jsx";
 import { useSearch } from "../model/hooks/useSearch/useSearch.jsx";
-import { MainPageList } from "~pages/main-page/ui/main-page-list/MainPageList.jsx";
+import { MainPageList } from "./main-page-list/MainPageList.jsx";
 
 const MainPage = () => {
   const { vacancyRef, searchRef, optionsRef } = useTourRefs();

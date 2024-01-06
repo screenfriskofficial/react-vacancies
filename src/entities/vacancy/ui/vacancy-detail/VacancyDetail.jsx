@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { memo } from "react";
 import { Flex } from "antd";
-import { VacancyDetailTitle } from "~entities/vacancy/ui/vacancy-detail/vacancy-detail-title/VacancyDetailTitle.jsx";
-import { VacancyDetailDescription } from "~entities/vacancy/ui/vacancy-detail/vacancy-detail-description/VacancyDetailDescription.jsx";
-import { VacancyDetailAddress } from "~entities/vacancy/ui/vacancy-detail/vacancy-detail-address/VacancyDetailAddress.jsx";
+import { VacancyDetailTitle } from "./vacancy-detail-title/VacancyDetailTitle.jsx";
+import { VacancyDetailDescription } from "./vacancy-detail-description/VacancyDetailDescription.jsx";
+import { VacancyDetailAddress } from "./vacancy-detail-address/VacancyDetailAddress.jsx";
 
 const VacancyDetail = memo(
   ({

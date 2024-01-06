@@ -2,7 +2,7 @@ import React from "react";
 import { ErrorMessage } from "~widgets/error-message/index.js";
 import PropTypes from "prop-types";
 
-export class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -29,3 +29,5 @@ export class ErrorBoundary extends React.Component {
 ErrorBoundary.propTypes = {
   children: PropTypes.node,
 };
+
+export { ErrorBoundary };

@@ -1,11 +1,11 @@
 import { Button, Flex, List } from "antd";
 import cls from "./MainPageList.module.css";
-import { MainPageSearch } from "../main-page-search/MainPageSearch.jsx";
+import { MainPageSearch } from "./main-page-search/MainPageSearch.jsx";
 import { QuestionCircleOutlined, SettingOutlined } from "@ant-design/icons";
 import { Vacancy } from "~entities/vacancy/index.js";
 import { memo } from "react";
 import PropTypes from "prop-types";
-import { mainPagination } from "~pages/main-page/model/lib/main-pagination/mainPagination.js";
+import { mainPagination } from "../../model/lib/main-pagination/mainPagination.js";
 
 const MainPageList = memo(
   ({

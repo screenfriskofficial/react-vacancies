@@ -1,6 +1,6 @@
 import { HomeOutlined, SettingOutlined } from "@ant-design/icons";
 
-const SettingsView = [
+export const SettingsView = [
   {
     key: "/settings",
     icon: <SettingOutlined />,
@@ -8,7 +8,7 @@ const SettingsView = [
   },
 ];
 
-const MainView = [
+export const MainView = [
   {
     key: "/",
     icon: <HomeOutlined />,

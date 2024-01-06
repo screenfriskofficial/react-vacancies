@@ -1,9 +1,17 @@
-import { NotAuthenticatedMsg } from "~shared/ui/not-authenticated-msg/NotAuthenticatedMsg.jsx";
+import { NotAuthenticated } from "~widgets/not-authenticated/NotAuthenticated.jsx";
+import PropTypes from "prop-types";
 
-export const ProtectedRoute = ({ children, isAuth }) => {
+const ProtectedRoute = ({ children, isAuth }) => {
   if (isAuth) {
     return children;
   }
 
-  return <NotAuthenticatedMsg />;
+  return <NotAuthenticated />;
 };
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node,
+  isAuth: PropTypes.bool,
+};
+
+export { ProtectedRoute };
