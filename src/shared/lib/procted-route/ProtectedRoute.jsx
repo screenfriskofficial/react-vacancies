@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children, isAuth }) => {
 
 ProtectedRoute.propTypes = {
   children: PropTypes.node,
-  isAuth: PropTypes.bool,
+  isAuth: PropTypes.object,
 };
 
 export { ProtectedRoute };
