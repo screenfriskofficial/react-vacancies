@@ -13,12 +13,13 @@ const VacancyDetail = memo(
     currency,
     salary,
     duty,
+    company,
     creation_date,
     url,
     addresses,
   }) => {
     return (
-      <Flex vertical gap={10}>
+      <Flex vertical gap={10} key={id}>
         <VacancyDetailTitle
           creation_date={creation_date}
           salary_min={salary_min}
@@ -27,7 +28,7 @@ const VacancyDetail = memo(
           currency={currency}
         />
         <VacancyDetailDescription url={url} duty={duty} />
-        <VacancyDetailAddress addresses={addresses} id={id} />
+        <VacancyDetailAddress addresses={addresses} id={id} company={company} />
       </Flex>
     );
   },
@@ -42,6 +43,7 @@ VacancyDetail.propTypes = {
   currency: PropTypes.string,
   salary: PropTypes.string,
   duty: PropTypes.string,
+  company: PropTypes.object,
   creation_date: PropTypes.string,
   addresses: PropTypes.object,
   url: PropTypes.string,

@@ -76,6 +76,7 @@ const MainPageList = memo(
             salary={item.vacancy.salary}
             salary_min={item.vacancy.salary_min}
             job_name={item.vacancy["job-name"]}
+            company={item.vacancy.company}
           />
         )}
       />

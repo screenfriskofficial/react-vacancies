@@ -9,6 +9,7 @@ const Vacancy = memo(
   ({
     id,
     salary_min,
+    company,
     salary_max,
     currency,
     job_name,
@@ -56,6 +57,7 @@ const Vacancy = memo(
         >
           <VacancyDetail
             id={id}
+            company={company}
             addresses={addresses}
             currency={currency}
             salary={salary}
@@ -82,6 +84,7 @@ Vacancy.propTypes = {
   url: PropTypes.string,
   salary_max: PropTypes.number,
   currency: PropTypes.string,
+  company: PropTypes.object,
   job_name: PropTypes.string,
   salary: PropTypes.string,
   vacancyRef: PropTypes.oneOfType([
