@@ -36,7 +36,7 @@ const MainPage = () => {
           optionsRef={optionsRef}
           currentPage={currentPage}
           pageSize={pageSize}
-          total={data && data.meta.total - 5}
+          total={data && data.meta.total}
           setStartTour={setStartTour}
         />
       )}
