@@ -20,9 +20,7 @@ const Footer = memo(({ bgColor, borderLG }) => {
         style={{ display: "flex", alignItems: "center", gap: 10 }}
       >
         <GithubFilled style={{ fontSize: "25px", cursor: "pointer" }} />
-        <Typography.Text style={{ fontSize: "18px" }}>
-          View on Github
-        </Typography.Text>
+        <Typography.Text>View on Github</Typography.Text>
       </Typography.Link>
     </Footer>
   );

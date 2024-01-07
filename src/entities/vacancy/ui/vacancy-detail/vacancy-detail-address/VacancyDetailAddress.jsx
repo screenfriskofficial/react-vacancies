@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Flex, Typography } from "antd";
 import { Map, Placemark, YMaps } from "@pbe/react-yandex-maps";
 import { memo } from "react";
 import PropTypes from "prop-types";
@@ -8,7 +8,7 @@ const VacancyDetailAddress = memo(({ addresses, id, company }) => {
     <>
       <Typography.Title level={5}>Адрес</Typography.Title>
       {addresses.address.map((address) => (
-        <div key={id}>
+        <Flex vertical key={id} gap={10}>
           <Typography.Text>{address.location}</Typography.Text>
           <YMaps query={{ apikey: import.meta.env.VITE_YA_MAP_API }}>
             <Map
@@ -30,7 +30,7 @@ const VacancyDetailAddress = memo(({ addresses, id, company }) => {
               />
             </Map>
           </YMaps>
-        </div>
+        </Flex>
       ))}
     </>
   );

@@ -3,7 +3,7 @@ import { Flex } from "antd";
 
 const SettingsPage = () => {
   return (
-    <Flex>
+    <Flex align={"center"} gap={10}>
       <ThemeSwitcher />
     </Flex>
   );

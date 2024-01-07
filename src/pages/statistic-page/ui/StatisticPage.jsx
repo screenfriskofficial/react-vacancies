@@ -1,5 +1,7 @@
+import { Typography } from "antd";
+
 const StatisticPage = () => {
-  return "Statistic page";
+  return <Typography.Text>Settings Page</Typography.Text>;
 };
 
 export default StatisticPage;
