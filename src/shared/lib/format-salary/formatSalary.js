@@ -2,8 +2,8 @@ export const formatSalary = (salary_min, salary_max, salary, currency = "") => {
   currency = currency.replace("«", "");
   currency = currency.replace("»", "");
 
-  if (salary_min === 0 && salary_max === 0 && salary) {
-    return salary + " " + currency;
+  if (salary_min === 0 && salary_max === 0) {
+    return "З/П по договоренности.";
   }
   if (salary_min === salary_max) {
     return salary_min + " " + currency || salary_max + " " + currency;

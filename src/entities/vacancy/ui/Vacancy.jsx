@@ -4,6 +4,7 @@ import { formatSalary } from "~shared/lib/format-salary/formatSalary.js";
 import PropTypes from "prop-types";
 import { memo, useCallback, useState } from "react";
 import { VacancyDetail } from "./vacancy-detail/VacancyDetail.jsx";
+import Highlighter from "react-highlight-words";
 
 const Vacancy = memo(
   ({
@@ -19,6 +20,7 @@ const Vacancy = memo(
     creation_date,
     url,
     addresses,
+    searchQuery,
   }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = useCallback(() => {
@@ -43,7 +45,12 @@ const Vacancy = memo(
           actions={[<HeartOutlined key={id} />]}
         >
           <List.Item.Meta
-            title={<span>{job_name}</span>}
+            title={
+              <Highlighter
+                searchWords={searchQuery.split(" ")}
+                textToHighlight={job_name}
+              />
+            }
             description={formatSalary(salary_min, salary_max, salary, currency)}
           />
         </List.Item>
@@ -92,6 +99,7 @@ Vacancy.propTypes = {
     PropTypes.shape({ current: PropTypes.any }),
   ]),
   addresses: PropTypes.object,
+  searchQuery: PropTypes.string,
 };
 
 export { Vacancy };

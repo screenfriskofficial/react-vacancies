@@ -1,19 +1,25 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
-export const fetchVacancies = createApi({
-  reducerPath: "fetchVacancies",
+export const vacanciesAPI = createApi({
+  reducerPath: "vacanciesAPI",
   baseQuery: fetchBaseQuery({
     baseUrl,
   }),
   endpoints: (builder) => ({
-    getVacancies: builder.query({
-      query: (arg) => {
+    getVacanciesByArgs: builder.query({
+      query(arg) {
         const { searchQuery, currentPage, pageSize } = arg;
         return `/region/65?text=${searchQuery}&offset=${currentPage}&limit=${pageSize}`;
+      },
+    }),
+    getAllVacancies: builder.query({
+      query(arg) {
+        const { searchQuery } = arg;
+        return `/region/65?text=${searchQuery}`;
       },
     }),
   }),
 });
 
-export const { useGetVacancies } = fetchVacancies;
+export const { useGetVacancies } = vacanciesAPI;

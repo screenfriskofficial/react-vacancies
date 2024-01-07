@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Flex, Spin, Tour } from "antd";
-import { fetchVacancies } from "~entities/vacancy/models/services/fetch-vacancies/fetchVacancies.js";
+import { vacanciesAPI } from "~entities/vacancy/model/services/vacanciesAPI/vacanciesAPI.js";
 import { mainTourSteps } from "../model/lib/main-tour-steps/mainTourSteps.js";
 import { useTourRefs } from "../model/hooks/useTourRefs/useTourRefs.jsx";
 import { useSearch } from "../model/hooks/useSearch/useSearch.jsx";
@@ -11,7 +11,7 @@ const MainPage = () => {
   const { searchQuery, pageSize, currentPage, setPageLocation } = useSearch();
 
   const { data, isLoading, error } =
-    fetchVacancies.endpoints.getVacancies.useQuery({
+    vacanciesAPI.endpoints.getVacanciesByArgs.useQuery({
       searchQuery,
       currentPage,
       pageSize,
