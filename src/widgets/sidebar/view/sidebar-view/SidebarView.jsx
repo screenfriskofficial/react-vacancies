@@ -1,18 +1,31 @@
-import { HomeOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  AreaChartOutlined,
+  BarsOutlined,
+  HomeOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 
+function getItem(label, key, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+}
 export const SettingsView = [
-  {
-    key: "/settings",
-    icon: <SettingOutlined />,
-    label: "Настройки",
-  },
+  getItem("Настройки", "/settings", <SettingOutlined />),
 ];
 
 export const MainView = [
+  getItem("Основное", null, <BarsOutlined />, [
+    getItem("Домашняя", "/", <HomeOutlined />),
+    getItem("Статистика", "/statistic", <AreaChartOutlined />),
+  ]),
+
   {
-    key: "/",
-    icon: <HomeOutlined />,
-    label: "Домашняя",
+    type: "divider",
   },
 ];
 

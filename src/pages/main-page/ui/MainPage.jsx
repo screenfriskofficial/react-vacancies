@@ -30,13 +30,13 @@ const MainPage = () => {
         <MainPageList
           setPageLocation={setPageLocation}
           vacancyRef={vacancyRef}
-          vacancies={data && data.results.vacancies}
+          vacancies={data?.results?.vacancies && data.results.vacancies}
           searchRef={searchRef}
           searchQuery={searchQuery}
           optionsRef={optionsRef}
           currentPage={currentPage}
           pageSize={pageSize}
-          total={data && data.meta.total}
+          total={data?.meta?.total && data.meta.total}
           setStartTour={setStartTour}
         />
       )}

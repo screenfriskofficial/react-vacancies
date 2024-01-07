@@ -1,3 +1,3 @@
-import SettingsPage from "./ui/SettingsPage.module.css";
+import SettingsPage from "./ui/SettingsPage.jsx";
 
 export default SettingsPage;

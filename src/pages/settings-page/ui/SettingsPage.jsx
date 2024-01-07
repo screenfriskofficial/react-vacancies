@@ -1,5 +1,12 @@
+import { ThemeSwitcher } from "~widgets/theme-switcher/ui/ThemeSwitcher.jsx";
+import { Flex } from "antd";
+
 const SettingsPage = () => {
-  return <div>Lang switcher + Theme switcher</div>;
+  return (
+    <Flex>
+      <ThemeSwitcher />
+    </Flex>
+  );
 };
 
 export default SettingsPage;
