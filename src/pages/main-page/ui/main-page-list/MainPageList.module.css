@@ -1,8 +1,0 @@
-@media screen and (max-width: 640px) {
-    .headerBox {
-        flex-direction: column;
-    }
-    button {
-        width: 100%;
-    }
-}

@@ -1,7 +1,6 @@
 import { Button, Flex, List } from "antd";
-import cls from "./MainPageList.module.css";
 import { MainPageSearch } from "./main-page-search/MainPageSearch.jsx";
-import { QuestionCircleOutlined, SettingOutlined } from "@ant-design/icons";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Vacancy } from "~entities/vacancy/index.js";
 import { memo } from "react";
 import PropTypes from "prop-types";
@@ -15,7 +14,6 @@ const MainPageList = memo(
     total,
     searchRef,
     vacancyRef,
-    optionsRef,
     searchQuery,
     setPageLocation,
     setStartTour,
@@ -36,21 +34,12 @@ const MainPageList = memo(
         }}
         pagination={{ ...pagination, total, current: currentPage }}
         header={
-          <Flex align={"center"} gap={15} className={cls.headerBox}>
-            <div ref={searchRef} style={{ width: "100%" }}>
-              <MainPageSearch
-                searchQuery={searchQuery}
-                setPageLocation={setPageLocation}
-              />
-            </div>
-            <Button
-              size={"large"}
-              type={"primary"}
-              ref={optionsRef}
-              icon={<SettingOutlined />}
-            >
-              Настройка поиска
-            </Button>
+          <Flex align={"center"} gap={15} vertical={mobile}>
+            <MainPageSearch
+              searchRef={searchRef}
+              searchQuery={searchQuery}
+              setPageLocation={setPageLocation}
+            />
             {!mobile && (
               <Button
                 onClick={() => setStartTour(true)}
@@ -101,10 +90,6 @@ MainPageList.propTypes = {
     PropTypes.shape({ current: PropTypes.any }),
   ]),
   vacancyRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any }),
-  ]),
-  optionsRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any }),
   ]),

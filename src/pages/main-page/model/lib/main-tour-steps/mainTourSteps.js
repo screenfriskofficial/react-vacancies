@@ -1,4 +1,4 @@
-const mainTourSteps = (searchRef, vacancyRef, optionsRef) => {
+const mainTourSteps = (searchRef, vacancyRef) => {
   return [
     {
       title: "Поиск",
@@ -13,18 +13,6 @@ const mainTourSteps = (searchRef, vacancyRef, optionsRef) => {
       title: "Просмотр вакансии",
       description: "Так же, вы можете просматривать вакансии нажимая на них.",
       target: () => vacancyRef.current,
-      nextButtonProps: {
-        children: "Далее",
-      },
-      prevButtonProps: {
-        children: "Назад",
-      },
-    },
-    {
-      title: "Настройка поиска",
-      description:
-        "Тут вы можете настроить ваши поисковые параметры, как вам удобно.",
-      target: () => optionsRef.current,
       nextButtonProps: {
         children: "Завершить",
       },

@@ -17,7 +17,7 @@ const MainPage = () => {
       pageSize,
     });
 
-  const steps = mainTourSteps(searchRef, vacancyRef, optionsRef);
+  const steps = mainTourSteps(searchRef, vacancyRef);
 
   const [startTour, setStartTour] = useState(false);
 
