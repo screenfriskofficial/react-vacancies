@@ -28,6 +28,7 @@ const MainPage = () => {
         <Spin />
       ) : (
         <MainPageList
+          isLoading={isLoading}
           setPageLocation={setPageLocation}
           vacancyRef={vacancyRef}
           vacancies={data?.results?.vacancies && data.results.vacancies}

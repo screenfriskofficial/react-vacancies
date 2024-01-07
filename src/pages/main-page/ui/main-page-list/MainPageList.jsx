@@ -14,6 +14,7 @@ const MainPageList = memo(
     total,
     searchRef,
     vacancyRef,
+    isLoading,
     searchQuery,
     setPageLocation,
     setStartTour,
@@ -36,6 +37,7 @@ const MainPageList = memo(
         header={
           <Flex align={"center"} gap={15} vertical={mobile}>
             <MainPageSearch
+              isLoading={isLoading}
               searchRef={searchRef}
               searchQuery={searchQuery}
               setPageLocation={setPageLocation}
@@ -93,6 +95,7 @@ MainPageList.propTypes = {
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any }),
   ]),
+  isLoading: PropTypes.bool,
   searchQuery: PropTypes.string,
   setPageLocation: PropTypes.func,
   setStartTour: PropTypes.func,
