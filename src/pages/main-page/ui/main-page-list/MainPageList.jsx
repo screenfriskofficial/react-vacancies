@@ -6,6 +6,7 @@ import { Vacancy } from "~entities/vacancy/index.js";
 import { memo } from "react";
 import PropTypes from "prop-types";
 import { mainPagination } from "../../model/lib/main-pagination/mainPagination.js";
+import { useResponsive } from "antd-style";
 
 const MainPageList = memo(
   ({
@@ -26,6 +27,7 @@ const MainPageList = memo(
       searchQuery,
       currentPage,
     );
+    const { mobile } = useResponsive();
     return (
       <List
         style={{
@@ -49,14 +51,16 @@ const MainPageList = memo(
             >
               Настройка поиска
             </Button>
-            <Button
-              onClick={() => setStartTour(true)}
-              size={"large"}
-              type={"primary"}
-              icon={<QuestionCircleOutlined />}
-            >
-              Помощь
-            </Button>
+            {!mobile && (
+              <Button
+                onClick={() => setStartTour(true)}
+                size={"large"}
+                type={"primary"}
+                icon={<QuestionCircleOutlined />}
+              >
+                Помощь
+              </Button>
+            )}
           </Flex>
         }
         itemLayout="vertical"
