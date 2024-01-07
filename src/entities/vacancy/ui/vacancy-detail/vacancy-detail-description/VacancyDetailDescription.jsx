@@ -7,7 +7,6 @@ const VacancyDetailDescription = memo(({ url, duty }) => {
   return (
     <Space>
       <Typography.Paragraph>
-        <Typography.Title level={5}>Описание</Typography.Title>
         <div dangerouslySetInnerHTML={{ __html: dompurify.sanitize(duty) }} />
       </Typography.Paragraph>
       <QRCode value={url || "-"} />

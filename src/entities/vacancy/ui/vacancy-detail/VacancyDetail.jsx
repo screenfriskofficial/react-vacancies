@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { memo } from "react";
-import { Flex } from "antd";
+import { Collapse, Flex } from "antd";
 import { VacancyDetailTitle } from "./vacancy-detail-title/VacancyDetailTitle.jsx";
 import { VacancyDetailDescription } from "./vacancy-detail-description/VacancyDetailDescription.jsx";
 import { VacancyDetailAddress } from "./vacancy-detail-address/VacancyDetailAddress.jsx";
@@ -18,6 +18,24 @@ const VacancyDetail = memo(
     url,
     addresses,
   }) => {
+    const items = [
+      {
+        key: "description",
+        label: "Описание",
+        children: <VacancyDetailDescription url={url} duty={duty} />,
+      },
+      {
+        key: "address",
+        label: "Адрес",
+        children: (
+          <VacancyDetailAddress
+            addresses={addresses}
+            id={id}
+            company={company}
+          />
+        ),
+      },
+    ];
     return (
       <Flex vertical gap={10} key={id}>
         <VacancyDetailTitle
@@ -27,8 +45,7 @@ const VacancyDetail = memo(
           salary={salary}
           currency={currency}
         />
-        <VacancyDetailDescription url={url} duty={duty} />
-        <VacancyDetailAddress addresses={addresses} id={id} company={company} />
+        <Collapse items={items} defaultActiveKey={"description"} />
       </Flex>
     );
   },
