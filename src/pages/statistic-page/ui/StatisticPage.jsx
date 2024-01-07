@@ -1,5 +1,6 @@
 import { Area } from "@ant-design/plots";
-import { useThemeMode } from "antd-style";
+import { useResponsive, useThemeMode } from "antd-style";
+import { Card, Flex } from "antd";
 
 const DemoArea = () => {
   const { themeMode } = useThemeMode();
@@ -23,10 +24,58 @@ const DemoArea = () => {
 };
 
 const StatisticPage = () => {
+  const { mobile } = useResponsive();
+
+  if (mobile) {
+    return (
+      <Flex gap={20} vertical>
+        <Card size={"small"} style={{ width: "100%" }}>
+          <div style={{ height: 150 }}>
+            <DemoArea />
+          </div>
+        </Card>
+        <Card size={"small"} style={{ width: "100%" }}>
+          <div style={{ height: 150 }}>
+            <DemoArea />
+          </div>
+        </Card>
+        <Card size={"small"} style={{ width: "100%" }}>
+          <div style={{ height: 150 }}>
+            <DemoArea />
+          </div>
+        </Card>
+        <Card size={"small"} style={{ width: "100%" }}>
+          <div style={{ height: 150 }}>
+            <DemoArea />
+          </div>
+        </Card>
+      </Flex>
+    );
+  }
+
   return (
-    <div>
-      <DemoArea />
-    </div>
+    <Flex gap={20} style={{ width: "100%" }}>
+      <Card size={"small"} style={{ width: "50%" }}>
+        <div style={{ height: 300 }}>
+          <DemoArea />
+        </div>
+      </Card>
+      <Card size={"small"} style={{ width: "50%" }}>
+        <div style={{ height: 300 }}>
+          <DemoArea />
+        </div>
+      </Card>
+      <Card size={"small"} style={{ width: "50%" }}>
+        <div style={{ height: 300 }}>
+          <DemoArea />
+        </div>
+      </Card>
+      <Card size={"small"} style={{ width: "50%" }}>
+        <div style={{ height: 300 }}>
+          <DemoArea />
+        </div>
+      </Card>
+    </Flex>
   );
 };
 

@@ -12,6 +12,7 @@ export const MainLayout = () => {
   const contentStyle = {
     minHeight: "calc(100cvh - 168px)",
     height: "calc(100vh - 168px)",
+    overflow: "auto",
     padding: "20px",
     backgroundColor: colorBgContainer,
     borderRadius: borderRadiusLG,

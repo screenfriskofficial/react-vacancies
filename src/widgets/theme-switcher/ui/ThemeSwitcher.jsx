@@ -18,7 +18,7 @@ export const ThemeSwitcher = () => {
 
   if (mobile) {
     return (
-      <Card size={"small"}>
+      <Card size={"small"} style={{ width: "100%" }}>
         <Flex align={"center"} vertical gap={10}>
           Выбор темы:
           <Segmented
