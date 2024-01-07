@@ -1,6 +1,6 @@
 import { Area } from "@ant-design/plots";
-import { useResponsive, useThemeMode } from "antd-style";
-import { Card, Flex } from "antd";
+import { useThemeMode } from "antd-style";
+import { Card, List } from "antd";
 
 const DemoArea = () => {
   const { themeMode } = useThemeMode();
@@ -24,58 +24,47 @@ const DemoArea = () => {
 };
 
 const StatisticPage = () => {
-  const { mobile } = useResponsive();
-
-  if (mobile) {
-    return (
-      <Flex gap={20} vertical>
-        <Card size={"small"} style={{ width: "100%" }}>
-          <div style={{ height: 150 }}>
-            <DemoArea />
-          </div>
-        </Card>
-        <Card size={"small"} style={{ width: "100%" }}>
-          <div style={{ height: 150 }}>
-            <DemoArea />
-          </div>
-        </Card>
-        <Card size={"small"} style={{ width: "100%" }}>
-          <div style={{ height: 150 }}>
-            <DemoArea />
-          </div>
-        </Card>
-        <Card size={"small"} style={{ width: "100%" }}>
-          <div style={{ height: 150 }}>
-            <DemoArea />
-          </div>
-        </Card>
-      </Flex>
-    );
-  }
+  const data = [
+    {
+      id: 1,
+      item: <DemoArea />,
+    },
+    {
+      id: 2,
+      item: <DemoArea />,
+    },
+    {
+      id: 3,
+      item: <DemoArea />,
+    },
+    {
+      id: 4,
+      item: <DemoArea />,
+    },
+    {
+      id: 5,
+      item: <DemoArea />,
+    },
+    {
+      id: 6,
+      item: <DemoArea />,
+    },
+  ];
 
   return (
-    <Flex gap={20} style={{ width: "100%" }}>
-      <Card size={"small"} style={{ width: "50%" }}>
-        <div style={{ height: 300 }}>
-          <DemoArea />
-        </div>
-      </Card>
-      <Card size={"small"} style={{ width: "50%" }}>
-        <div style={{ height: 300 }}>
-          <DemoArea />
-        </div>
-      </Card>
-      <Card size={"small"} style={{ width: "50%" }}>
-        <div style={{ height: 300 }}>
-          <DemoArea />
-        </div>
-      </Card>
-      <Card size={"small"} style={{ width: "50%" }}>
-        <div style={{ height: 300 }}>
-          <DemoArea />
-        </div>
-      </Card>
-    </Flex>
+    <List
+      grid={{ xs: 1, sm: 2, md: 2, lg: 2, xl: 2, xxl: 2 }}
+      dataSource={data}
+      renderItem={(item) => {
+        return (
+          <Card key={item.id} style={{ margin: 15 }}>
+            <div style={{ height: 250 }}>
+              <DemoArea />
+            </div>
+          </Card>
+        );
+      }}
+    />
   );
 };
 
