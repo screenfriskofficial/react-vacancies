@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 const VacancyDetailAddress = memo(({ addresses, id, company }) => {
   return (
     <>
-      <Typography.Title level={5}>Адрес</Typography.Title>
       {addresses.address.map((address) => (
         <Flex vertical key={id} gap={10}>
           <Typography.Text>{address.location}</Typography.Text>
