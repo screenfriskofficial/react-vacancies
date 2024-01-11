@@ -27,13 +27,18 @@ const MainPageList = memo(
       currentPage,
     );
     const { mobile } = useResponsive();
+
     return (
       <List
         style={{
           height: "100%",
           overflow: "auto",
         }}
-        pagination={{ ...pagination, total, current: currentPage }}
+        pagination={{
+          ...pagination,
+          current: currentPage,
+          total: total > 9000 ? 9000 : total,
+        }}
         header={
           <Flex align={"center"} gap={15} vertical={mobile}>
             <MainPageSearch

@@ -10,7 +10,8 @@ export const vacanciesAPI = createApi({
     getVacanciesByArgs: builder.query({
       query(arg) {
         const { searchQuery, currentPage, pageSize } = arg;
-        return `/region/65?text=${searchQuery}&offset=${currentPage}&limit=${pageSize}`;
+
+        return `/region/77?text=${searchQuery}&offset=${currentPage}&limit=${pageSize}`;
       },
     }),
     getAllVacancies: builder.query({
