@@ -1,6 +1,7 @@
 import {
   AreaChartOutlined,
   BarsOutlined,
+  HeartOutlined,
   HomeOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
@@ -22,6 +23,7 @@ export const MainView = [
   getItem("Основное", null, <BarsOutlined />, [
     getItem("Домашняя", "/", <HomeOutlined />),
     getItem("Статистика", "/statistic", <AreaChartOutlined />),
+    getItem("Избранное", "/favorites", <HeartOutlined />),
   ]),
 
   {

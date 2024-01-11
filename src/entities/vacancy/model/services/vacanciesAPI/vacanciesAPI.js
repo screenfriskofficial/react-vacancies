@@ -14,11 +14,6 @@ export const vacanciesAPI = createApi({
         return `/region/77?text=${searchQuery}&offset=${currentPage}&limit=${pageSize}`;
       },
     }),
-    getAllVacancies: builder.query({
-      query() {
-        return `/region/65`;
-      },
-    }),
   }),
 });
 

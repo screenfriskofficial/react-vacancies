@@ -44,6 +44,7 @@ export const useAuth = () => {
         uid: user.uid,
         displayName: username,
         email,
+        favorites: [],
       });
 
       message.success("Вы успешно зарегестрировались!", 1);

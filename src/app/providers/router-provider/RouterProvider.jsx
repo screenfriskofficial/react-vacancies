@@ -9,6 +9,7 @@ import { useProfile } from "~shared/hooks/useProfile.js";
 const MainPage = Loadable(lazy(() => import("~pages/main-page")));
 const SettingsPage = Loadable(lazy(() => import("~pages/settings-page")));
 const StatisticPage = Loadable(lazy(() => import("~pages/statistic-page")));
+const FavoritesPage = Loadable(lazy(() => import("~pages/favorites-page")));
 
 const AppProvider = () => {
   const { currentUser } = useProfile();
@@ -35,6 +36,14 @@ const AppProvider = () => {
             </ProtectedRoute>
           ),
           path: "/statistic",
+        },
+        {
+          element: (
+            <ProtectedRoute isAuth={currentUser}>
+              <FavoritesPage />
+            </ProtectedRoute>
+          ),
+          path: "/favorites",
         },
       ],
     },
