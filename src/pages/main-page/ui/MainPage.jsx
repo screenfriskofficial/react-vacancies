@@ -9,15 +9,21 @@ import { MainPageList } from "./main-page-list/MainPageList.jsx";
 const MainPage = () => {
   const { vacancyRef, searchRef, optionsRef } = useTourRefs();
   const { searchQuery, pageSize, currentPage, setPageLocation } = useSearch();
+  const [region, setRegion] = useState("77");
 
   const { data, isLoading, error } =
     vacanciesAPI.endpoints.getVacanciesByArgs.useQuery({
       searchQuery,
       currentPage,
       pageSize,
+      region,
     });
 
-  const steps = mainTourSteps(searchRef, vacancyRef);
+  const onChangeRegion = (e) => {
+    setRegion(e.target.value);
+  };
+
+  const steps = mainTourSteps(searchRef, vacancyRef, optionsRef);
 
   const [startTour, setStartTour] = useState(false);
 
@@ -28,6 +34,8 @@ const MainPage = () => {
         <Spin />
       ) : (
         <MainPageList
+          region={region}
+          onChangeRegion={onChangeRegion}
           isLoading={isLoading}
           setPageLocation={setPageLocation}
           vacancyRef={vacancyRef}

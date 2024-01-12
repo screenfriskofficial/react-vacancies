@@ -9,9 +9,9 @@ export const vacanciesAPI = createApi({
   endpoints: (builder) => ({
     getVacanciesByArgs: builder.query({
       query(arg) {
-        const { searchQuery, currentPage, pageSize } = arg;
+        const { searchQuery, currentPage, pageSize, region = "77" } = arg;
 
-        return `/region/77?text=${searchQuery}&offset=${currentPage}&limit=${pageSize}`;
+        return `/region/${region}?text=${searchQuery}&offset=${currentPage}&limit=${pageSize}`;
       },
     }),
   }),
