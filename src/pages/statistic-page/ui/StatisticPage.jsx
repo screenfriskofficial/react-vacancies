@@ -1,6 +1,7 @@
 import { Area } from "@ant-design/plots";
 import { useThemeMode } from "antd-style";
 import { Card, List } from "antd";
+import { StatisticPageCreate } from "~pages/statistic-page/ui/statistic-page-create/StatisticPageCreate.jsx";
 
 const DemoArea = () => {
   const { themeMode } = useThemeMode();
@@ -55,6 +56,7 @@ const StatisticPage = () => {
     <List
       grid={{ xs: 1, sm: 2, md: 2, lg: 2, xl: 2, xxl: 2 }}
       dataSource={data}
+      header={<StatisticPageCreate />}
       renderItem={(item) => {
         return (
           <Card key={item.id} style={{ margin: 15 }}>

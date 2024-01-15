@@ -3,16 +3,17 @@ import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const RegisterForm = memo(({ register, loading }) => {
+const RegisterForm = memo(({ register, loading, setIsAuthOpen }) => {
   const [form] = Form.useForm();
   const [clientReady, setClientReady] = useState(false);
 
   useEffect(() => {
     setClientReady(true);
   }, []);
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const { email, password, username } = values;
-    register(email, password, username);
+    await register(email, password, username);
+    setIsAuthOpen(false);
   };
 
   return (
@@ -85,6 +86,7 @@ RegisterForm.displayName = "RegisterForm";
 RegisterForm.propTypes = {
   register: PropTypes.func,
   loading: PropTypes.bool,
+  setIsAuthOpen: PropTypes.func,
 };
 
 export { RegisterForm };

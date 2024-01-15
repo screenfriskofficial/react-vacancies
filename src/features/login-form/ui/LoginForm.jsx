@@ -3,16 +3,17 @@ import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const LoginForm = memo(({ login, loading }) => {
+const LoginForm = memo(({ login, loading, setIsAuthOpen }) => {
   const [form] = Form.useForm();
   const [clientReady, setClientReady] = useState(false);
 
   useEffect(() => {
     setClientReady(true);
   }, []);
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const { email, password } = values;
-    login(email, password);
+    await login(email, password);
+    setIsAuthOpen(false);
   };
 
   return (
@@ -73,6 +74,7 @@ LoginForm.displayName = "LoginForm";
 LoginForm.propTypes = {
   login: PropTypes.func,
   loading: PropTypes.bool,
+  setIsAuthOpen: PropTypes.func,
 };
 
 export { LoginForm };

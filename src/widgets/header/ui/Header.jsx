@@ -32,7 +32,11 @@ const Header = memo(({ bgColor, borderLG }) => {
       key: "login",
       label: "Войти",
       children: (
-        <LoginForm login={loginWithEmailAndPassword} loading={isLoading} />
+        <LoginForm
+          login={loginWithEmailAndPassword}
+          setIsAuthOpen={setIsAuthOpen}
+          loading={isLoading}
+        />
       ),
     },
     {
@@ -41,6 +45,7 @@ const Header = memo(({ bgColor, borderLG }) => {
       children: (
         <RegisterForm
           register={registerWithEmailAndPassword}
+          setIsAuthOpen={setIsAuthOpen}
           loading={isLoading}
         />
       ),
