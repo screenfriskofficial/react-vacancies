@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { Button, List } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import { formatSalary } from "~shared/lib/format-salary/formatSalary.js";
 import PropTypes from "prop-types";
@@ -15,7 +15,8 @@ const StatisticPageVacancy = ({
     <List.Item
       style={{ cursor: "pointer" }}
       key={id}
-      actions={[<HeartOutlined style={{ fontSize: "20px" }} key={id} />]}
+      actions={[<Button key={id}>Выбрать</Button>]}
+      extra={<HeartOutlined style={{ fontSize: "20px" }} key={id} />}
     >
       <List.Item.Meta
         title={job_name}

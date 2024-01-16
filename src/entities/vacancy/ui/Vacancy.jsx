@@ -42,7 +42,7 @@ const Vacancy = memo(
           style={{ cursor: "pointer" }}
           onClick={showModal}
           key={id}
-          actions={[<HeartOutlined style={{ fontSize: "20px" }} key={id} />]}
+          extra={<HeartOutlined style={{ fontSize: "20px" }} key={id} />}
         >
           <List.Item.Meta
             title={

@@ -16,8 +16,8 @@ export const vacanciesAPI = createApi({
     }),
     getAllVacancies: builder.query({
       query(arg) {
-        const { region = "77" } = arg;
-        return `/region/${region}`;
+        const { region = "77", searchValue } = arg;
+        return `/region/${region}?text=${searchValue}`;
       },
     }),
   }),
