@@ -30,12 +30,15 @@ const MainPageList = memo(
     const [region, setRegion] = useState("77");
 
     const { data, isLoading, error } =
-      vacanciesAPI.endpoints.getVacanciesByArgs.useQuery({
-        searchQuery,
-        currentPage,
-        pageSize,
-        region,
-      });
+      vacanciesAPI.endpoints.getVacanciesByArgs.useQuery(
+        {
+          searchQuery,
+          currentPage,
+          pageSize,
+          region,
+        },
+        { pollingInterval: 35000 },
+      );
     const vacancies = data?.results?.vacancies && data.results.vacancies;
     const total = data?.meta?.total && data.meta.total;
 
