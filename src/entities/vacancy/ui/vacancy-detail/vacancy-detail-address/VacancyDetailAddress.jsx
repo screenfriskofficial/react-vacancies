@@ -1,7 +1,7 @@
 import { Flex, Typography } from "antd";
 import { Map, Placemark, YMaps } from "@pbe/react-yandex-maps";
 import { memo } from "react";
-import PropTypes from "prop-types";
+import { VacancyDetailAddressTypes } from "../../../model/types/VacancyTypes.js";
 
 const VacancyDetailAddress = memo(({ addresses, id, company }) => {
   return (
@@ -37,10 +37,6 @@ const VacancyDetailAddress = memo(({ addresses, id, company }) => {
 
 VacancyDetailAddress.displayName = "VacancyDetailAddress";
 
-VacancyDetailAddress.propTypes = {
-  addresses: PropTypes.object,
-  company: PropTypes.object,
-  id: PropTypes.string,
-};
+VacancyDetailAddress.propTypes = VacancyDetailAddressTypes;
 
 export { VacancyDetailAddress };

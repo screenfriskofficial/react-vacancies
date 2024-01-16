@@ -1,6 +1,6 @@
 import { Input } from "antd";
-import PropTypes, { any } from "prop-types";
 import { memo } from "react";
+import { MainPageSearchTypes } from "../../../model/types/MainPageTypes.js";
 
 const MainPageSearch = memo(
   ({ setPageLocation, searchQuery, searchRef, isLoading }) => {
@@ -32,14 +32,6 @@ const MainPageSearch = memo(
 
 MainPageSearch.displayName = "MainPageSearch";
 
-MainPageSearch.propTypes = {
-  setPageLocation: PropTypes.func,
-  searchQuery: PropTypes.string,
-  isLoading: PropTypes.bool,
-  searchRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: any }),
-  ]),
-};
+MainPageSearch.propTypes = MainPageSearchTypes;
 
 export { MainPageSearch };

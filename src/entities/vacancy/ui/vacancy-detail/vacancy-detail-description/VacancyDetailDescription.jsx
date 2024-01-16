@@ -1,7 +1,7 @@
 import { QRCode, Typography } from "antd";
 import dompurify from "dompurify";
 import { memo } from "react";
-import PropTypes from "prop-types";
+import { VacancyDetailDescriptionTypes } from "../../../model/types/VacancyTypes.js";
 
 const VacancyDetailDescription = memo(({ url, duty }) => {
   return (
@@ -16,9 +16,6 @@ const VacancyDetailDescription = memo(({ url, duty }) => {
 
 VacancyDetailDescription.displayName = "VacancyDetailDescription";
 
-VacancyDetailDescription.propTypes = {
-  url: PropTypes.string,
-  duty: PropTypes.string,
-};
+VacancyDetailDescription.propTypes = VacancyDetailDescriptionTypes;
 
 export { VacancyDetailDescription };

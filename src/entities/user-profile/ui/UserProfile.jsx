@@ -2,8 +2,8 @@ import { memo, useCallback, useState } from "react";
 import { Avatar, Button, Flex, Layout, Modal, Spin, Tooltip } from "antd";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { useAuth } from "~shared/hooks/useAuth.js";
-import PropTypes from "prop-types";
 import dayjs from "dayjs";
+import { UserProfileTypes } from "~entities/user-profile/model/types/UserProfileTypes.js";
 
 const UserProfile = memo(({ headerStyle, isLoadingProfile, currentUser }) => {
   const { Header } = Layout;
@@ -66,10 +66,6 @@ const UserProfile = memo(({ headerStyle, isLoadingProfile, currentUser }) => {
 
 UserProfile.displayName = "UserProfile";
 
-UserProfile.propTypes = {
-  headerStyle: PropTypes.object,
-  isLoadingProfile: PropTypes.bool,
-  currentUser: PropTypes.object,
-};
+UserProfile.propTypes = UserProfileTypes;
 
 export { UserProfile };

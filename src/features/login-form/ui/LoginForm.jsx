@@ -1,7 +1,7 @@
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { LoginFormTypes } from "../model/types/LoginFormTypes.js";
 
 const LoginForm = memo(({ login, loading, setIsAuthOpen }) => {
   const [form] = Form.useForm();
@@ -71,10 +71,6 @@ const LoginForm = memo(({ login, loading, setIsAuthOpen }) => {
 
 LoginForm.displayName = "LoginForm";
 
-LoginForm.propTypes = {
-  login: PropTypes.func,
-  loading: PropTypes.bool,
-  setIsAuthOpen: PropTypes.func,
-};
+LoginForm.propTypes = LoginFormTypes;
 
 export { LoginForm };

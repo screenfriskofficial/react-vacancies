@@ -3,11 +3,11 @@ import { MainPageSearch } from "./main-page-search/MainPageSearch.jsx";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Vacancy } from "~entities/vacancy/index.js";
 import { memo, useState } from "react";
-import PropTypes from "prop-types";
 import { mainPagination } from "../../model/lib/main-pagination/mainPagination.js";
 import { useResponsive } from "antd-style";
 import { MainPageOptions } from "~pages/main-page/ui/main-page-list/main-page-options/MainPageOptions.jsx";
 import { vacanciesAPI } from "~entities/vacancy/model/services/vacanciesAPI/vacanciesAPI.js";
+import { MainPageListTypes } from "../../model/types/MainPageTypes.js";
 
 const MainPageList = memo(
   ({
@@ -114,27 +114,6 @@ const MainPageList = memo(
 
 MainPageList.displayName = "MainPageList";
 
-MainPageList.propTypes = {
-  currentPage: PropTypes.string,
-  pageSize: PropTypes.string,
-  total: PropTypes.number,
-  pagination: PropTypes.object,
-  searchRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any }),
-  ]),
-  vacancyRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any }),
-  ]),
-  optionsRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any }),
-  ]),
-  isLoading: PropTypes.bool,
-  searchQuery: PropTypes.string,
-  setPageLocation: PropTypes.func,
-  setStartTour: PropTypes.func,
-};
+MainPageList.propTypes = MainPageListTypes;
 
 export { MainPageList };

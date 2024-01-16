@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
 import { memo } from "react";
 import { Collapse, Flex } from "antd";
 import { VacancyDetailTitle } from "./vacancy-detail-title/VacancyDetailTitle.jsx";
 import { VacancyDetailDescription } from "./vacancy-detail-description/VacancyDetailDescription.jsx";
 import { VacancyDetailAddress } from "./vacancy-detail-address/VacancyDetailAddress.jsx";
+import { VacancyDetailTypes } from "../../model/types/VacancyTypes.js";
 
 const VacancyDetail = memo(
   ({
@@ -53,17 +53,6 @@ const VacancyDetail = memo(
 
 VacancyDetail.displayName = "VacancyDetail";
 
-VacancyDetail.propTypes = {
-  id: PropTypes.string,
-  salary_min: PropTypes.number,
-  salary_max: PropTypes.number,
-  currency: PropTypes.string,
-  salary: PropTypes.string,
-  duty: PropTypes.string,
-  company: PropTypes.object,
-  creation_date: PropTypes.string,
-  addresses: PropTypes.object,
-  url: PropTypes.string,
-};
+VacancyDetail.propTypes = VacancyDetailTypes;
 
 export { VacancyDetail };

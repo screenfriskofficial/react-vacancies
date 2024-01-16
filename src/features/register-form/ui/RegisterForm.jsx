@@ -1,7 +1,7 @@
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { memo, useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { RegisterFormTypes } from "../model/types/RegisterFormTypes.js";
 
 const RegisterForm = memo(({ register, loading, setIsAuthOpen }) => {
   const [form] = Form.useForm();
@@ -83,10 +83,6 @@ const RegisterForm = memo(({ register, loading, setIsAuthOpen }) => {
 
 RegisterForm.displayName = "RegisterForm";
 
-RegisterForm.propTypes = {
-  register: PropTypes.func,
-  loading: PropTypes.bool,
-  setIsAuthOpen: PropTypes.func,
-};
+RegisterForm.propTypes = RegisterFormTypes;
 
 export { RegisterForm };

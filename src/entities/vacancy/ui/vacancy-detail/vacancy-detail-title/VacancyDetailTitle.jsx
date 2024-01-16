@@ -1,7 +1,7 @@
 import { Flex, Typography } from "antd";
 import { formatSalary } from "~shared/lib/format-salary/formatSalary.js";
 import { memo } from "react";
-import PropTypes from "prop-types";
+import { VacancyDetailTitleTypes } from "../../../model/types/VacancyTypes.js";
 
 const VacancyDetailTitle = memo(
   ({ salary_min, salary_max, salary, currency, creation_date }) => {
@@ -18,12 +18,6 @@ const VacancyDetailTitle = memo(
 
 VacancyDetailTitle.displayName = "VacancyDetailTitle";
 
-VacancyDetailTitle.propTypes = {
-  salary_min: PropTypes.number,
-  salary_max: PropTypes.number,
-  salary: PropTypes.string,
-  currency: PropTypes.string,
-  creation_date: PropTypes.string,
-};
+VacancyDetailTitle.propTypes = VacancyDetailTitleTypes;
 
 export { VacancyDetailTitle };

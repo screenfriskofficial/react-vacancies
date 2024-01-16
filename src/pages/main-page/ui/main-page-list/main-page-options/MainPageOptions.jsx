@@ -1,6 +1,6 @@
 import { Button, Input, Modal, Typography } from "antd";
 import { memo, useState } from "react";
-import PropTypes from "prop-types";
+import { MainPageOptionsTypes } from "../../../model/types/MainPageTypes.js";
 
 const MainPageOptions = memo(({ optionsRef, onChangeRegion, region }) => {
   const [open, setOpen] = useState(false);
@@ -37,13 +37,6 @@ const MainPageOptions = memo(({ optionsRef, onChangeRegion, region }) => {
 
 MainPageOptions.displayName = "MainPageOptions";
 
-MainPageOptions.propTypes = {
-  onChangeRegion: PropTypes.func,
-  region: PropTypes.string,
-  optionsRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any }),
-  ]),
-};
+MainPageOptions.propTypes = MainPageOptionsTypes;
 
 export { MainPageOptions };

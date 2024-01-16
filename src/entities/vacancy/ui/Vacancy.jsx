@@ -1,10 +1,10 @@
 import { List, Modal, Typography } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import { formatSalary } from "~shared/lib/format-salary/formatSalary.js";
-import PropTypes from "prop-types";
 import { memo, useCallback, useState } from "react";
 import { VacancyDetail } from "./vacancy-detail/VacancyDetail.jsx";
 import Highlighter from "react-highlight-words";
+import { VacancyTypes } from "../model/types/VacancyTypes.js";
 
 const Vacancy = memo(
   ({
@@ -83,23 +83,6 @@ const Vacancy = memo(
 
 Vacancy.displayName = "Vacancy";
 
-Vacancy.propTypes = {
-  id: PropTypes.string,
-  salary_min: PropTypes.number,
-  duty: PropTypes.string,
-  creation_date: PropTypes.string,
-  url: PropTypes.string,
-  salary_max: PropTypes.number,
-  currency: PropTypes.string,
-  company: PropTypes.object,
-  job_name: PropTypes.string,
-  salary: PropTypes.string,
-  vacancyRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any }),
-  ]),
-  addresses: PropTypes.object,
-  searchQuery: PropTypes.string,
-};
+Vacancy.propTypes = VacancyTypes;
 
 export { Vacancy };
