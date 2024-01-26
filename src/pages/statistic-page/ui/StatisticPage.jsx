@@ -1,7 +1,7 @@
 import { Area } from "@ant-design/plots";
 import { useThemeMode } from "antd-style";
 import { Card, List } from "antd";
-import { StatisticPageCreate } from "~pages/statistic-page/ui/statistic-page-create/StatisticPageCreate.jsx";
+import { StatisticPageCreate } from "../ui/statistic-page-create/StatisticPageCreate.jsx";
 
 const DemoArea = () => {
   const { themeMode } = useThemeMode();

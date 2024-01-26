@@ -23,8 +23,6 @@ const Header = memo(({ bgColor, borderLG }) => {
     gap: 10,
   };
 
-  console.log(currentUser);
-
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   const tabItems = [

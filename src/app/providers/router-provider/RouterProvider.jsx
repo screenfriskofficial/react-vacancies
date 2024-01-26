@@ -1,9 +1,9 @@
 import { useRoutes } from "react-router-dom";
 import { MainLayout } from "~shared/layouts/main-layout/index.js";
-import { Loadable } from "~shared/lib/loadable/Loadable.jsx";
+import { Loadable } from "~shared/lib/components/loadable/Loadable.jsx";
 import { lazy } from "react";
 
-import { ProtectedRoute } from "~shared/lib/procted-route/ProtectedRoute.jsx";
+import { ProtectedRoute } from "~shared/lib/components/procted-route/ProtectedRoute.jsx";
 import { useProfile } from "~shared/hooks/useProfile.js";
 
 const MainPage = Loadable(lazy(() => import("~pages/main-page")));
