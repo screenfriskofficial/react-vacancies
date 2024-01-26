@@ -1,6 +1,7 @@
 import {
   AreaChartOutlined,
   BarsOutlined,
+  DashboardOutlined,
   HeartOutlined,
   HomeOutlined,
   SettingOutlined,
@@ -17,6 +18,7 @@ function getItem(label, key, icon, children, type) {
 }
 export const SettingsView = [
   getItem("Настройки", "/settings", <SettingOutlined />),
+  getItem("В разработке", "/develop", <DashboardOutlined />),
 ];
 
 export const MainView = [

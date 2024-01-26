@@ -1,5 +1,5 @@
 const FavoritesPage = () => {
-  return <div>dfg</div>;
+  return <div>В разработке...</div>;
 };
 
 export { FavoritesPage };
