@@ -33,6 +33,7 @@ const VacancyFavorites = memo(({ id }) => {
     await removeVacancy({ id, isFavorite: true });
     setIsFavorite(false);
   };
+
   if (isLoading) {
     return <Spin />;
   }
