@@ -40,18 +40,38 @@ const Vacancy = memo(
     return (
       <>
         <List.Item
-          ref={vacancyRef}
+          ref={vacancyRef && vacancyRef}
           style={{ cursor: "pointer" }}
           onClick={showModal}
           key={id}
-          extra={currentUser && <VacancyFavorites id={id} />}
+          extra={
+            currentUser && (
+              <VacancyFavorites
+                id={id}
+                company={company}
+                addresses={addresses}
+                currency={currency}
+                salary={salary}
+                salary_max={salary_max}
+                salary_min={salary_min}
+                job_name={job_name}
+                url={url}
+                duty={duty}
+                creation_date={creation_date}
+              />
+            )
+          }
         >
           <List.Item.Meta
             title={
-              <Highlighter
-                searchWords={searchQuery.split(" ")}
-                textToHighlight={job_name}
-              />
+              searchQuery ? (
+                <Highlighter
+                  searchWords={searchQuery.split(" ")}
+                  textToHighlight={job_name}
+                />
+              ) : (
+                job_name
+              )
             }
             description={formatSalary(salary_min, salary_max, salary, currency)}
           />

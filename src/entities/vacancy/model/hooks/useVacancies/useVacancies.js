@@ -18,30 +18,83 @@ const useVacancies = () => {
   const { currentUser } = useProfile();
   const [isLoading, setIsLoading] = useState(false);
 
-  const addVacancy = async (id) => {
+  const addVacancy = async (
+    id,
+    salary_min,
+    salary_max,
+    currency,
+    company,
+    job_name,
+    salary,
+    duty,
+    creation_date,
+    url,
+    addresses,
+  ) => {
     const ref = doc(db, "users", currentUser.uid);
     try {
       setIsLoading(true);
       await updateDoc(ref, {
-        favorites: arrayUnion({ id, isFavorite: true }),
+        favorites: arrayUnion({
+          id,
+          salary_min,
+          salary_max,
+          currency,
+          company,
+          job_name,
+          salary,
+          duty,
+          creation_date,
+          url,
+          addresses,
+        }),
       });
       message.success("Добавлено в избранное", 1);
     } catch (e) {
+      setIsLoading(true);
       message.error(e);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const removeVacancy = async (id) => {
+  const removeVacancy = async (
+    id,
+    salary_min,
+    salary_max,
+    currency,
+    company,
+    job_name,
+    salary,
+    duty,
+    creation_date,
+    url,
+    addresses,
+  ) => {
     const ref = doc(db, "users", currentUser.uid);
     try {
+      setIsLoading(true);
       await updateDoc(ref, {
-        favorites: arrayRemove(id),
+        favorites: arrayRemove({
+          id,
+          salary_min,
+          salary_max,
+          currency,
+          company,
+          job_name,
+          salary,
+          duty,
+          creation_date,
+          url,
+          addresses,
+        }),
       });
       message.success("Удалено из избранного", 1);
     } catch (e) {
+      setIsLoading(true);
       message.error(e);
+    } finally {
+      setIsLoading(false);
     }
   };
 
