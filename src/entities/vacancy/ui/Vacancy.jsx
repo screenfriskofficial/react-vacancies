@@ -1,10 +1,10 @@
 import { List, Modal, Typography } from "antd";
-import { HeartOutlined } from "@ant-design/icons";
 import { formatSalary } from "~shared/lib/format-salary/formatSalary.js";
 import { memo, useCallback, useState } from "react";
 import { VacancyDetail } from "./vacancy-detail/VacancyDetail.jsx";
 import Highlighter from "react-highlight-words";
 import { VacancyTypes } from "../model/types/VacancyTypes.js";
+import { VacancyFavorites } from "~entities/vacancy/ui/vacancy-favorites/VacancyFavorites.jsx";
 
 const Vacancy = memo(
   ({
@@ -42,7 +42,7 @@ const Vacancy = memo(
           style={{ cursor: "pointer" }}
           onClick={showModal}
           key={id}
-          extra={<HeartOutlined style={{ fontSize: "20px" }} key={id} />}
+          extra={<VacancyFavorites id={id} />}
         >
           <List.Item.Meta
             title={

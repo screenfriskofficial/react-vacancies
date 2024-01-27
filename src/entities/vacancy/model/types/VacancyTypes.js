@@ -50,3 +50,7 @@ export const VacancyDetailAddressTypes = {
   company: PropTypes.object,
   id: PropTypes.string,
 };
+
+export const VacancyFavoritesTypes = {
+  id: PropTypes.string,
+};
