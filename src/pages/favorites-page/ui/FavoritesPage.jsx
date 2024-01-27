@@ -2,25 +2,22 @@ import { useVacancies } from "~entities/vacancy/model/hooks/useVacancies/useVaca
 import { useEffect, useState } from "react";
 
 import { Vacancy } from "~entities/vacancy/index.js";
-import { List } from "antd";
+import { List, message } from "antd";
 
 const FavoritesPage = () => {
   const { getFavoriteVacancies } = useVacancies();
   const [favoriteVacancies, setFavoriteVacancies] = useState([]);
 
   useEffect(() => {
-    const fetchFavoriteVacancies = async () => {
-      const vacancies = await getFavoriteVacancies();
-      console.log(vacancies);
-      setFavoriteVacancies(vacancies);
-    };
-
-    fetchFavoriteVacancies();
+    getFavoriteVacancies()
+      .then((res) => setFavoriteVacancies(res))
+      .catch((e) => message.error(e));
   }, [getFavoriteVacancies]);
 
   return (
     <List
       dataSource={favoriteVacancies}
+      header={<h3>Избранное</h3>}
       itemLayout="vertical"
       bordered
       size={"large"}

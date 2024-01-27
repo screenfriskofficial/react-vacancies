@@ -99,6 +99,9 @@ const useVacancies = () => {
   };
 
   const getFavoriteVacancies = async () => {
+    if (!currentUser.uid) {
+      return;
+    }
     const userRef = collection(db, "users");
     const q = query(userRef, where("uid", "==", currentUser.uid));
 

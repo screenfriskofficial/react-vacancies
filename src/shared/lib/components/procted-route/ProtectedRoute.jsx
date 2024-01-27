@@ -1,4 +1,4 @@
-import { NotAuthenticated } from "~widgets/not-authenticated/index.js";
+import { NotAuthenticated } from "~shared/ui/not-authenticated/NotAuthenticated.jsx";
 import PropTypes from "prop-types";
 
 const ProtectedRoute = ({ children, isAuth }) => {

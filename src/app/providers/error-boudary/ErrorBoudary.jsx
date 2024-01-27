@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorMessage } from "~widgets/error-message/index.js";
+import { ErrorMessage } from "~shared/ui/error-message/ErrorMessage.jsx";
 import PropTypes from "prop-types";
 
 class ErrorBoundary extends React.Component {
