@@ -1,22 +1,15 @@
-import { useVacancies } from "~entities/vacancy/model/hooks/useVacancies/useVacancies.js";
-import { useEffect, useState } from "react";
-
 import { Vacancy } from "~entities/vacancy/index.js";
-import { List, message } from "antd";
+import { List } from "antd";
+import { useSelector } from "react-redux";
+import { fetchFavorites } from "~entities/favorites/model/selectors/fetch-favorites/fetchFavorites.js";
+import { VacancyFavorites } from "~entities/favorites/VacancyFavorites.jsx";
 
 const FavoritesPage = () => {
-  const { getFavoriteVacancies } = useVacancies();
-  const [favoriteVacancies, setFavoriteVacancies] = useState([]);
-
-  useEffect(() => {
-    getFavoriteVacancies()
-      .then((res) => setFavoriteVacancies(res))
-      .catch((e) => message.error(e));
-  }, [getFavoriteVacancies]);
+  const favoriteVacancies = useSelector(fetchFavorites);
 
   return (
     <List
-      dataSource={favoriteVacancies}
+      dataSource={favoriteVacancies && favoriteVacancies}
       header={<h3>Избранное</h3>}
       itemLayout="vertical"
       bordered
@@ -35,7 +28,21 @@ const FavoritesPage = () => {
           salary_min={vacancy.salary_min}
           job_name={vacancy.job_name}
           company={vacancy.company}
-        />
+        >
+          <VacancyFavorites
+            id={vacancy.id}
+            url={vacancy.url}
+            creation_date={vacancy.creation_date}
+            addresses={vacancy.addresses}
+            duty={vacancy.duty}
+            salary_max={vacancy.salary_max}
+            currency={vacancy.currency}
+            salary={vacancy.salary}
+            salary_min={vacancy.salary_min}
+            job_name={vacancy.job_name}
+            company={vacancy.company}
+          />
+        </Vacancy>
       )}
     />
   );

@@ -1,22 +1,13 @@
-import {
-  updateDoc,
-  doc,
-  arrayUnion,
-  arrayRemove,
-  collection,
-  query,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import { updateDoc, doc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "~app/firebase.js";
 
-import { useProfile } from "~shared/hooks/useProfile.js";
 import { message } from "antd";
 import { useState } from "react";
+import { useProfile } from "~shared/hooks/useProfile.js";
 
 const useVacancies = () => {
+  const [loading, setLoading] = useState(false);
   const { currentUser } = useProfile();
-  const [isLoading, setIsLoading] = useState(false);
 
   const addVacancy = async (
     id,
@@ -33,7 +24,7 @@ const useVacancies = () => {
   ) => {
     const ref = doc(db, "users", currentUser.uid);
     try {
-      setIsLoading(true);
+      setLoading(true);
       await updateDoc(ref, {
         favorites: arrayUnion({
           id,
@@ -51,10 +42,10 @@ const useVacancies = () => {
       });
       message.success("Добавлено в избранное", 1);
     } catch (e) {
-      setIsLoading(true);
+      setLoading(true);
       message.error(e);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -73,7 +64,7 @@ const useVacancies = () => {
   ) => {
     const ref = doc(db, "users", currentUser.uid);
     try {
-      setIsLoading(true);
+      setLoading(true);
       await updateDoc(ref, {
         favorites: arrayRemove({
           id,
@@ -91,37 +82,17 @@ const useVacancies = () => {
       });
       message.success("Удалено из избранного", 1);
     } catch (e) {
-      setIsLoading(true);
+      setLoading(true);
       message.error(e);
     } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const getFavoriteVacancies = async () => {
-    if (!currentUser.uid) {
-      return;
-    }
-    const userRef = collection(db, "users");
-    const q = query(userRef, where("uid", "==", currentUser.uid));
-
-    try {
-      const querySnapshot = await getDocs(q);
-      const favoriteVacancies = querySnapshot.docs.map(
-        (doc) => doc.data().favorites,
-      );
-      return favoriteVacancies.flat();
-    } catch (error) {
-      message.error("Ошибка получения вакансий:", error);
-      return [];
+      setLoading(false);
     }
   };
 
   return {
-    getFavoriteVacancies,
     addVacancy,
     removeVacancy,
-    isLoading,
+    loading,
   };
 };
 

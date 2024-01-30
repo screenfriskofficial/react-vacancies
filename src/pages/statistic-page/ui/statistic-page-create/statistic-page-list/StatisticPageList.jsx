@@ -1,5 +1,5 @@
 import { Input, List, message, Spin } from "antd";
-import { vacanciesAPI } from "~entities/vacancy/model/services/vacanciesAPI/vacanciesAPI.js";
+import { vacanciesAPI } from "~entities/favorites/model/services/vacanciesAPI/vacanciesAPI.js";
 import { useState } from "react";
 import { StatisticPageVacancy } from "~pages/statistic-page/ui/statistic-page-create/statistic-page-vacancy/StatisticPageVacancy.jsx";
 import { mainPagination } from "~pages/main-page/model/lib/main-pagination/mainPagination.js";

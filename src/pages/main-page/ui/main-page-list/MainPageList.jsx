@@ -6,8 +6,9 @@ import { memo, useState } from "react";
 import { mainPagination } from "../../model/lib/main-pagination/mainPagination.js";
 import { useResponsive } from "antd-style";
 import { MainPageOptions } from "~pages/main-page/ui/main-page-list/main-page-options/MainPageOptions.jsx";
-import { vacanciesAPI } from "~entities/vacancy/model/services/vacanciesAPI/vacanciesAPI.js";
+import { vacanciesAPI } from "~entities/favorites/model/services/vacanciesAPI/vacanciesAPI.js";
 import { MainPageListTypes } from "../../model/types/MainPageTypes.js";
+import { VacancyFavorites } from "~entities/favorites/VacancyFavorites.jsx";
 
 const MainPageList = memo(
   ({
@@ -106,7 +107,21 @@ const MainPageList = memo(
                 job_name={item.vacancy["job-name"]}
                 searchQuery={searchQuery}
                 company={item.vacancy.company}
-              />
+              >
+                <VacancyFavorites
+                  id={item.vacancy.id}
+                  company={item.vacancy.company}
+                  addresses={item.vacancy.addresses}
+                  currency={item.vacancy.currency}
+                  salary={item.vacancy.salary}
+                  salary_max={item.vacancy.salary_max}
+                  salary_min={item.vacancy.salary_min}
+                  job_name={item.vacancy["job-name"]}
+                  url={item.vacancy.vac_url}
+                  duty={item.vacancy.duty}
+                  creation_date={item.vacancy["creation-date"]}
+                />
+              </Vacancy>
             )}
           />
         )}

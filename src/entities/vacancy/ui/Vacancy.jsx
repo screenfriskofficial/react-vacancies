@@ -4,9 +4,7 @@ import { memo, useCallback, useState } from "react";
 import { VacancyDetail } from "./vacancy-detail/VacancyDetail.jsx";
 import Highlighter from "react-highlight-words";
 import { VacancyTypes } from "../model/types/VacancyTypes.js";
-import { VacancyFavorites } from "~entities/vacancy/ui/vacancy-favorites/VacancyFavorites.jsx";
 import { useProfile } from "~shared/hooks/useProfile.js";
-
 const Vacancy = memo(
   ({
     id,
@@ -22,9 +20,11 @@ const Vacancy = memo(
     url,
     addresses,
     searchQuery,
+    children,
   }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { currentUser } = useProfile();
+
     const showModal = useCallback(() => {
       setIsModalOpen(true);
     }, []);
@@ -44,23 +44,7 @@ const Vacancy = memo(
           style={{ cursor: "pointer" }}
           onClick={showModal}
           key={id}
-          extra={
-            currentUser && (
-              <VacancyFavorites
-                id={id}
-                company={company}
-                addresses={addresses}
-                currency={currency}
-                salary={salary}
-                salary_max={salary_max}
-                salary_min={salary_min}
-                job_name={job_name}
-                url={url}
-                duty={duty}
-                creation_date={creation_date}
-              />
-            )
-          }
+          extra={currentUser && children}
         >
           <List.Item.Meta
             title={
