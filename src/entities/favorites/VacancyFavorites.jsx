@@ -4,12 +4,12 @@ import { VacancyFavoritesTypes } from "~entities/vacancy/model/types/VacancyType
 import { useVacancies } from "~entities/favorites/model/hooks/useVacancies/useVacancies.js";
 import { message, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFavorites } from "~entities/favorites/model/selectors/fetch-favorites/fetchFavorites.js";
+
 import { useProfile } from "~shared/hooks/useProfile.js";
-import { vacancyActions } from "~entities/favorites/model/slice/vacancyFavoritesSlice.js";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "~app/firebase.js";
+import { fetchFavorites } from "~entities/favorites/model/services/fetchFavorites/fetchFavorites.js";
+import { fetchFavoritesSelector } from "~entities/favorites/model/selectors/fetch-favorites-selector/fetchFavoritesSelector.js";
 import { favoritesIsLoading } from "~entities/favorites/model/selectors/favorites-is-loading/favoritesIsLoading.js";
+import { favoritesError } from "~entities/favorites/model/selectors/favorites-error/favoritesError.js";
 
 const VacancyFavorites = memo(
   ({
@@ -25,43 +25,25 @@ const VacancyFavorites = memo(
     url,
     addresses,
   }) => {
-    const { addVacancy, removeVacancy, loading } = useVacancies();
+    const { addVacancy, removeVacancy } = useVacancies();
     const [isFavorite, setIsFavorite] = useState(false);
-    const isLoading = useSelector(favoritesIsLoading);
     const dispatch = useDispatch();
-    const favoriteVacancies = useSelector(fetchFavorites);
+    const favoriteVacancies = useSelector(fetchFavoritesSelector);
+    const isLoading = useSelector(favoritesIsLoading);
+    const error = useSelector(favoritesError);
     const { currentUser } = useProfile();
-
-    useEffect(() => {
-      const getFavoriteVacancies = async () => {
-        dispatch(vacancyActions.setIsLoading(true));
-        if (!currentUser.uid) {
-          return;
-        }
-        const userRef = collection(db, "users");
-        const q = query(userRef, where("uid", "==", currentUser.uid));
-
-        try {
-          const querySnapshot = await getDocs(q);
-          const favoriteVacancies = querySnapshot.docs.map(
-            (doc) => doc.data().favorites,
-          );
-          dispatch(vacancyActions.getVacancies(favoriteVacancies.flat()));
-        } catch (error) {
-          message.error("Ошибка получения вакансий:", error);
-          return [];
-        } finally {
-          dispatch(vacancyActions.setIsLoading(false));
-        }
-      };
-      getFavoriteVacancies();
-    }, [currentUser.uid, dispatch]);
 
     const checkFavorites = useCallback(() => {
       const isFav =
         favoriteVacancies && favoriteVacancies.some((value) => value.id === id);
       setIsFavorite(isFav);
-    }, [id, favoriteVacancies]);
+    }, [favoriteVacancies, id]);
+
+    useEffect(() => {
+      if (currentUser) {
+        dispatch(fetchFavorites(currentUser));
+      }
+    }, [currentUser, dispatch]);
 
     useEffect(() => {
       checkFavorites();
@@ -103,8 +85,8 @@ const VacancyFavorites = memo(
       setIsFavorite(false);
     };
 
-    if (loading) {
-      return <Spin />;
+    if (error) {
+      return message.error(error);
     }
 
     if (isLoading) {

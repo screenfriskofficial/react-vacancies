@@ -1,11 +1,26 @@
 import { Vacancy } from "~entities/vacancy/index.js";
-import { List } from "antd";
-import { useSelector } from "react-redux";
-import { fetchFavorites } from "~entities/favorites/model/selectors/fetch-favorites/fetchFavorites.js";
-import { VacancyFavorites } from "~entities/favorites/VacancyFavorites.jsx";
+import { List, Spin } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { useProfile } from "~shared/hooks/useProfile.js";
+import { useEffect } from "react";
+import { fetchFavorites } from "~entities/favorites/model/services/fetchFavorites/fetchFavorites.js";
+import { fetchFavoritesSelector } from "~entities/favorites/model/selectors/fetch-favorites-selector/fetchFavoritesSelector.js";
+import { favoritesIsLoading } from "~entities/favorites/model/selectors/favorites-is-loading/favoritesIsLoading.js";
 
 const FavoritesPage = () => {
-  const favoriteVacancies = useSelector(fetchFavorites);
+  const dispatch = useDispatch();
+  const favoriteVacancies = useSelector(fetchFavoritesSelector);
+  const isLoading = useSelector(favoritesIsLoading);
+
+  const { currentUser } = useProfile();
+
+  useEffect(() => {
+    if (currentUser.uid) {
+      dispatch(fetchFavorites(currentUser));
+    }
+  }, [currentUser, dispatch]);
+
+  if (isLoading) return <Spin />;
 
   return (
     <List
@@ -28,21 +43,7 @@ const FavoritesPage = () => {
           salary_min={vacancy.salary_min}
           job_name={vacancy.job_name}
           company={vacancy.company}
-        >
-          <VacancyFavorites
-            id={vacancy.id}
-            url={vacancy.url}
-            creation_date={vacancy.creation_date}
-            addresses={vacancy.addresses}
-            duty={vacancy.duty}
-            salary_max={vacancy.salary_max}
-            currency={vacancy.currency}
-            salary={vacancy.salary}
-            salary_min={vacancy.salary_min}
-            job_name={vacancy.job_name}
-            company={vacancy.company}
-          />
-        </Vacancy>
+        />
       )}
     />
   );

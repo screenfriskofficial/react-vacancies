@@ -6,7 +6,7 @@ import { memo, useState } from "react";
 import { mainPagination } from "../../model/lib/main-pagination/mainPagination.js";
 import { useResponsive } from "antd-style";
 import { MainPageOptions } from "~pages/main-page/ui/main-page-list/main-page-options/MainPageOptions.jsx";
-import { vacanciesAPI } from "~entities/favorites/model/services/vacanciesAPI/vacanciesAPI.js";
+import { vacanciesAPI } from "~entities/vacancy/model/services/vacanciesAPI/vacanciesAPI.js";
 import { MainPageListTypes } from "../../model/types/MainPageTypes.js";
 import { VacancyFavorites } from "~entities/favorites/VacancyFavorites.jsx";
 
