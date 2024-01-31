@@ -11,107 +11,58 @@ import { fetchFavoritesSelector } from "~entities/favorites/model/selectors/fetc
 import { favoritesIsLoading } from "~entities/favorites/model/selectors/favorites-is-loading/favoritesIsLoading.js";
 import { favoritesError } from "~entities/favorites/model/selectors/favorites-error/favoritesError.js";
 
-const VacancyFavorites = memo(
-  ({
-    id,
-    salary_min,
-    company,
-    salary_max,
-    currency,
-    job_name,
-    salary,
-    duty,
-    creation_date,
-    url,
-    addresses,
-  }) => {
-    const { addVacancy, removeVacancy } = useVacancies();
-    const [isFavorite, setIsFavorite] = useState(false);
-    const dispatch = useDispatch();
-    const favoriteVacancies = useSelector(fetchFavoritesSelector);
-    const isLoading = useSelector(favoritesIsLoading);
-    const error = useSelector(favoritesError);
-    const { currentUser } = useProfile();
+const VacancyFavorites = memo(({ id, ...otherProps }) => {
+  const { addVacancy, removeVacancy } = useVacancies();
+  const dispatch = useDispatch();
+  const favoriteVacancies = useSelector(fetchFavoritesSelector);
+  const isLoading = useSelector(favoritesIsLoading);
+  const error = useSelector(favoritesError);
+  const { currentUser } = useProfile();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const data = Object.values({ ...otherProps });
 
-    const checkFavorites = useCallback(() => {
-      const isFav =
-        favoriteVacancies && favoriteVacancies.some((value) => value.id === id);
-      setIsFavorite(isFav);
-    }, [favoriteVacancies, id]);
+  useEffect(() => {
+    const list =
+      favoriteVacancies && favoriteVacancies.some((item) => item.id === id);
+    setIsFavorite(list);
+  }, [favoriteVacancies, id]);
 
-    useEffect(() => {
-      if (currentUser) {
-        dispatch(fetchFavorites(currentUser));
-      }
-    }, [currentUser, dispatch]);
-
-    useEffect(() => {
-      checkFavorites();
-    }, [checkFavorites]);
-
-    const handleAddFavorite = async (e) => {
-      e.stopPropagation();
-      await addVacancy(
-        id,
-        salary_min,
-        salary_max,
-        currency,
-        company,
-        job_name,
-        salary,
-        duty,
-        creation_date,
-        url,
-        addresses,
-      );
-      setIsFavorite(true);
-    };
-
-    const handleRemoveFavorite = async (e) => {
-      e.stopPropagation();
-      await removeVacancy(
-        id,
-        salary_min,
-        salary_max,
-        currency,
-        company,
-        job_name,
-        salary,
-        duty,
-        creation_date,
-        url,
-        addresses,
-      );
-      setIsFavorite(false);
-    };
-
-    if (error) {
-      return message.error(error);
+  useEffect(() => {
+    if (currentUser) {
+      dispatch(fetchFavorites(currentUser));
     }
+  }, [currentUser, dispatch]);
 
-    if (isLoading) {
-      return <Spin />;
-    }
+  const toggleFavorite = useCallback(
+    async (e) => {
+      e.stopPropagation();
+      const response = isFavorite
+        ? await removeVacancy(id, ...data)
+        : await addVacancy(id, ...data);
+      setIsFavorite((prevState) => !prevState);
+      return response;
+    },
+    [addVacancy, data, id, isFavorite, removeVacancy],
+  );
 
-    return (
-      <>
-        {isFavorite ? (
-          <HeartFilled
-            style={{ fontSize: "20px" }}
-            key={id}
-            onClick={handleRemoveFavorite}
-          />
-        ) : (
-          <HeartOutlined
-            style={{ fontSize: "20px" }}
-            key={id}
-            onClick={handleAddFavorite}
-          />
-        )}
-      </>
-    );
-  },
-);
+  if (error) {
+    return message.error(error);
+  }
+
+  if (isLoading) {
+    return <Spin />;
+  }
+
+  const FavoriteIcon = isFavorite ? HeartFilled : HeartOutlined;
+
+  return (
+    <FavoriteIcon
+      style={{ fontSize: "20px" }}
+      key={id}
+      onClick={toggleFavorite}
+    />
+  );
+});
 
 VacancyFavorites.displayName = "VacancyFavorites";
 VacancyFavorites.propTypes = VacancyFavoritesTypes;
