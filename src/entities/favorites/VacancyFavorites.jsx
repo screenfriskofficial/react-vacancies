@@ -19,7 +19,6 @@ const VacancyFavorites = memo(({ id, ...otherProps }) => {
   const error = useSelector(favoritesError);
   const { currentUser } = useProfile();
   const [isFavorite, setIsFavorite] = useState(false);
-  const data = Object.values({ ...otherProps });
 
   useEffect(() => {
     const list =
@@ -37,12 +36,12 @@ const VacancyFavorites = memo(({ id, ...otherProps }) => {
     async (e) => {
       e.stopPropagation();
       const response = isFavorite
-        ? await removeVacancy(id, ...data)
-        : await addVacancy(id, ...data);
+        ? await removeVacancy({ id, ...otherProps })
+        : await addVacancy({ id, ...otherProps });
       setIsFavorite((prevState) => !prevState);
       return response;
     },
-    [addVacancy, data, id, isFavorite, removeVacancy],
+    [addVacancy, id, isFavorite, otherProps, removeVacancy],
   );
 
   if (error) {

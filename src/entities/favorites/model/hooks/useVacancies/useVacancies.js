@@ -7,34 +7,12 @@ import { useProfile } from "~shared/hooks/useProfile.js";
 const useVacancies = () => {
   const { currentUser } = useProfile();
 
-  const addVacancy = async (
-    id,
-    salary_min,
-    salary_max,
-    currency,
-    company,
-    job_name,
-    salary,
-    duty,
-    creation_date,
-    url,
-    addresses,
-  ) => {
+  const addVacancy = async (data) => {
     const ref = doc(db, "users", currentUser.uid);
     try {
       await updateDoc(ref, {
         favorites: arrayUnion({
-          id,
-          salary_min,
-          salary_max,
-          currency,
-          company,
-          job_name,
-          salary,
-          duty,
-          creation_date,
-          url,
-          addresses,
+          ...data,
         }),
       });
       message.success("Добавлено в избранное", 1);
@@ -43,34 +21,12 @@ const useVacancies = () => {
     }
   };
 
-  const removeVacancy = async (
-    id,
-    salary_min,
-    salary_max,
-    currency,
-    company,
-    job_name,
-    salary,
-    duty,
-    creation_date,
-    url,
-    addresses,
-  ) => {
+  const removeVacancy = async (data) => {
     const ref = doc(db, "users", currentUser.uid);
     try {
       await updateDoc(ref, {
         favorites: arrayRemove({
-          id,
-          salary_min,
-          salary_max,
-          currency,
-          company,
-          job_name,
-          salary,
-          duty,
-          creation_date,
-          url,
-          addresses,
+          ...data,
         }),
       });
       message.success("Удалено из избранного", 1);
